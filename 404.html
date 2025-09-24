@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Page not found - MapConductor Android SDK Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="installation.html">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="core/georectbounds.html"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="core/zoom-levels.html"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="examples/advanced-usage.html"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MapConductor Android SDK Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
+<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Installation and Versions - MapConductor Android SDK Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="installation.html" class="active">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="core/georectbounds.html"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="core/zoom-levels.html"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="examples/advanced-usage.html"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MapConductor Android SDK Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="installation-and-versions"><a class="header" href="#installation-and-versions">Installation and Versions</a></h1>
+<p>This page provides complete installation instructions and version information for all MapConductor Android SDK modules.</p>
+<h2 id="current-version"><a class="header" href="#current-version">Current Version</a></h2>
+<p><strong>Latest Release</strong>: <code>1.0.0</code></p>
+<h2 id="versioning-strategy"><a class="header" href="#versioning-strategy">Versioning Strategy</a></h2>
+<p>MapConductor follows a unified versioning approach across all modules:</p>
+<h3 id="major-version-alignment"><a class="header" href="#major-version-alignment">Major Version Alignment</a></h3>
+<ul>
+<li>All modules share the same <strong>major version</strong> to ensure compatibility</li>
+<li>When any core module requires breaking changes, all modules increment their major version together</li>
+</ul>
+<h3 id="core-module-versioning"><a class="header" href="#core-module-versioning">Core Module Versioning</a></h3>
+<ul>
+<li><strong>Minor version</strong> increments when:
+<ul>
+<li>Map provider SDKs receive major updates requiring significant API changes</li>
+<li>New core components are added due to expanded map provider capabilities</li>
+<li>Significant new features are introduced to the unified API</li>
+</ul>
+</li>
+<li><strong>Patch version</strong> increments for:
+<ul>
+<li>Bug fixes and stability improvements</li>
+<li>Performance optimizations</li>
+<li>Documentation updates</li>
+</ul>
+</li>
+</ul>
+<h3 id="experimental-module-versioning"><a class="header" href="#experimental-module-versioning">Experimental Module Versioning</a></h3>
+<ul>
+<li><strong>Major version</strong> increments when:
+<ul>
+<li>New significant features or icon types are added</li>
+<li>Breaking API changes are introduced</li>
+<li>Module graduates from experimental to stable</li>
+</ul>
+</li>
+<li><strong>Patch version</strong> increments for:
+<ul>
+<li>Minor bug fixes and improvements</li>
+<li>Small additions that don't break existing APIs</li>
+</ul>
+</li>
+</ul>
+<h2 id="core-modules"><a class="header" href="#core-modules">Core Modules</a></h2>
+<h3 id="required-modules"><a class="header" href="#required-modules">Required Modules</a></h3>
+<h4 id="mapconductor-core"><a class="header" href="#mapconductor-core">mapconductor-core</a></h4>
+<p>The core module containing shared functionality and base classes.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-core:1.0.0"
+</code></pre>
+<p><strong>Required for</strong>: All MapConductor usage
+<strong>Dependencies</strong>: Jetpack Compose, Kotlin Coroutines
+<strong>Size</strong>: ~XXX KB</p>
+<h3 id="map-provider-modules"><a class="header" href="#map-provider-modules">Map Provider Modules</a></h3>
+<p>Choose one or more map provider modules based on your needs:</p>
+<h4 id="mapconductor-for-googlemaps"><a class="header" href="#mapconductor-for-googlemaps">mapconductor-for-googlemaps</a></h4>
+<p>Google Maps integration module.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: GoogleMapsView, GoogleMapViewStateImpl
+<strong>Requires</strong>: Google Maps SDK setup
+<strong>Size</strong>: ~XXX KB</p>
+<h4 id="mapconductor-for-mapbox"><a class="header" href="#mapconductor-for-mapbox">mapconductor-for-mapbox</a></h4>
+<p>Mapbox integration module.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: MapboxMapView, MapboxViewStateImpl
+<strong>Requires</strong>: Mapbox SDK setup
+<strong>Size</strong>: ~XXX KB</p>
+<h4 id="mapconductor-for-here"><a class="header" href="#mapconductor-for-here">mapconductor-for-here</a></h4>
+<p>HERE Maps integration module.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-here:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: HereMapView, HereViewStateImpl
+<strong>Requires</strong>: HERE SDK setup
+<strong>Size</strong>: ~XXX KB</p>
+<h4 id="mapconductor-for-arcgis"><a class="header" href="#mapconductor-for-arcgis">mapconductor-for-arcgis</a></h4>
+<p>ArcGIS integration module.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: ArcGISMapView, ArcGISMapViewStateImpl
+<strong>Requires</strong>: ArcGIS SDK setup
+<strong>Size</strong>: ~XXX KB</p>
+<h2 id="experimental-modules"><a class="header" href="#experimental-modules">Experimental Modules</a></h2>
+<blockquote>
+<p><strong>⚠️ Experimental</strong>: These modules are experimental and may change significantly in future versions.</p>
+</blockquote>
+<h3 id="mapconductor-icons"><a class="header" href="#mapconductor-icons">mapconductor-icons</a></h3>
+<p>Custom marker icons with programmatic styling.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-icons:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: CircleIcon, FlagIcon
+<strong>Stability</strong>: Experimental
+<strong>Size</strong>: ~XXX KB</p>
+<h3 id="mapconductor-marker-strategy"><a class="header" href="#mapconductor-marker-strategy">mapconductor-marker-strategy</a></h3>
+<p>Advanced marker rendering strategies for performance optimization.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-marker-strategy:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: DefaultMarkerRenderingStrategy, SpatialMarkerRenderingStrategy
+<strong>Stability</strong>: Experimental
+<strong>Size</strong>: ~XXX KB</p>
+<h3 id="mapconductor-marker-native-strategy"><a class="header" href="#mapconductor-marker-native-strategy">mapconductor-marker-native-strategy</a></h3>
+<p>High-performance native C++ marker management.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-marker-native-strategy:1.0.0"
+</code></pre>
+<p><strong>Provides</strong>: NativeMarkerManager, SimpleNativeParallelStrategy
+<strong>Requires</strong>: Native library support (arm64-v8a, armeabi-v7a, x86, x86_64)
+<strong>Stability</strong>: Highly Experimental
+<strong>Size</strong>: ~XXX KB + native libraries</p>
+<h2 id="complete-installation-examples"><a class="header" href="#complete-installation-examples">Complete Installation Examples</a></h2>
+<h3 id="basic-installation-single-provider"><a class="header" href="#basic-installation-single-provider">Basic Installation (Single Provider)</a></h3>
+<pre><code class="language-kotlin">dependencies {
+    // Core module (required)
+    implementation "com.mapconductor:mapconductor-core:1.0.0"
+
+    // Choose one map provider
+    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+}
+</code></pre>
+<h3 id="multi-provider-installation"><a class="header" href="#multi-provider-installation">Multi-Provider Installation</a></h3>
+<pre><code class="language-kotlin">dependencies {
+    // Core module (required)
+    implementation "com.mapconductor:mapconductor-core:1.0.0"
+
+    // Multiple map providers
+    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-here:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+}
+</code></pre>
+<h3 id="full-installation-all-modules"><a class="header" href="#full-installation-all-modules">Full Installation (All Modules)</a></h3>
+<pre><code class="language-kotlin">dependencies {
+    // Core module
+    implementation "com.mapconductor:mapconductor-core:1.0.0"
+
+    // All map providers
+    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-here:1.0.0"
+    implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+
+    // Experimental modules (optional)
+    implementation "com.mapconductor:mapconductor-icons:1.0.0"
+    implementation "com.mapconductor:mapconductor-marker-strategy:1.0.0"
+    implementation "com.mapconductor:mapconductor-marker-native-strategy:1.0.0"
+}
+</code></pre>
+<h2 id="module-dependencies"><a class="header" href="#module-dependencies">Module Dependencies</a></h2>
+<h3 id="dependency-graph"><a class="header" href="#dependency-graph">Dependency Graph</a></h3>
+<pre><code>mapconductor-core (base)
+├── mapconductor-for-googlemaps
+├── mapconductor-for-mapbox
+├── mapconductor-for-here
+├── mapconductor-for-arcgis
+├── mapconductor-icons
+├── mapconductor-marker-strategy
+└── mapconductor-marker-native-strategy
+</code></pre>
+<h3 id="external-dependencies"><a class="header" href="#external-dependencies">External Dependencies</a></h3>
+<p>Each module requires different external dependencies:</p>
+<h4 id="core-module-dependencies"><a class="header" href="#core-module-dependencies">Core Module Dependencies</a></h4>
+<ul>
+<li><code>androidx.compose.ui:ui</code></li>
+<li><code>androidx.compose.runtime:runtime</code></li>
+<li><code>org.jetbrains.kotlinx:kotlinx-coroutines-android</code></li>
+</ul>
+<h4 id="google-maps-module"><a class="header" href="#google-maps-module">Google Maps Module</a></h4>
+<ul>
+<li><code>com.google.android.gms:play-services-maps</code></li>
+<li><code>com.google.maps.android:maps-compose</code></li>
+</ul>
+<h4 id="mapbox-module"><a class="header" href="#mapbox-module">Mapbox Module</a></h4>
+<ul>
+<li><code>com.mapbox.maps:android</code></li>
+<li><code>com.mapbox.extension:maps-compose</code></li>
+</ul>
+<h4 id="here-maps-module"><a class="header" href="#here-maps-module">HERE Maps Module</a></h4>
+<ul>
+<li><code>com.here.sdk:sdk-core</code></li>
+<li><code>com.here.sdk:sdk-search</code></li>
+</ul>
+<h4 id="arcgis-module"><a class="header" href="#arcgis-module">ArcGIS Module</a></h4>
+<ul>
+<li><code>com.esri.arcgisruntime:arcgis-android</code></li>
+</ul>
+<h2 id="version-compatibility"><a class="header" href="#version-compatibility">Version Compatibility</a></h2>
+<h3 id="mapconductor-version-matrix"><a class="header" href="#mapconductor-version-matrix">MapConductor Version Matrix</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>MapConductor</th><th>Min Android</th><th>Target Android</th><th>Kotlin</th><th>Compose</th></tr></thead><tbody>
+<tr><td>1.0.0</td><td>API 26 (8.0)</td><td>API 35 (15)</td><td>1.9.x</td><td>1.7.x</td></tr>
+</tbody></table>
+</div>
+<h3 id="map-provider-sdk-compatibility"><a class="header" href="#map-provider-sdk-compatibility">Map Provider SDK Compatibility</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Provider</th><th>SDK Version</th><th>MapConductor 1.0.0</th></tr></thead><tbody>
+<tr><td>Google Maps</td><td>18.2.x+</td><td>✅ Compatible</td></tr>
+<tr><td>Mapbox</td><td>11.x+</td><td>✅ Compatible</td></tr>
+<tr><td>HERE</td><td>4.23.x+</td><td>✅ Compatible</td></tr>
+<tr><td>ArcGIS</td><td>200.x+</td><td>✅ Compatible</td></tr>
+</tbody></table>
+</div>
+<h2 id="gradle-configuration"><a class="header" href="#gradle-configuration">Gradle Configuration</a></h2>
+<h3 id="project-level-buildgradle"><a class="header" href="#project-level-buildgradle">Project-level build.gradle</a></h3>
+<pre><code class="language-kotlin">buildscript {
+    ext {
+        compose_version = '1.7.1'
+        kotlin_version = '1.9.25'
+    }
+}
+</code></pre>
+<h3 id="module-level-buildgradle"><a class="header" href="#module-level-buildgradle">Module-level build.gradle</a></h3>
+<pre><code class="language-kotlin">android {
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 35
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+}
+</code></pre>
+<h3 id="proguard-configuration"><a class="header" href="#proguard-configuration">ProGuard Configuration</a></h3>
+<p>For release builds, add these ProGuard rules:</p>
+<pre><code class="language-proguard"># MapConductor Core
+-keep class com.mapconductor.core.** { *; }
+
+# Map Provider Specific
+-keep class com.mapconductor.googlemaps.** { *; }
+-keep class com.mapconductor.mapbox.** { *; }
+-keep class com.mapconductor.here.** { *; }
+-keep class com.mapconductor.arcgis.** { *; }
+
+# Native Strategy (if using)
+-keep class com.mapconductor.marker.nativestrategy.** { *; }
+</code></pre>
+<h2 id="version-updates"><a class="header" href="#version-updates">Version Updates</a></h2>
+<h3 id="checking-for-updates"><a class="header" href="#checking-for-updates">Checking for Updates</a></h3>
+<p>To check for the latest MapConductor version:</p>
+<ol>
+<li><strong>GitHub Releases</strong>: Check the <a href="https://github.com/mapconductor/android-sdk/releases">releases page</a></li>
+<li><strong>Maven Central</strong>: Search for <code>com.mapconductor</code> on <a href="https://central.sonatype.com/">Maven Central</a></li>
+<li><strong>Gradle Version Catalog</strong>: Use dependency version checking tools</li>
+</ol>
+<h3 id="updating-versions"><a class="header" href="#updating-versions">Updating Versions</a></h3>
+<p>To update to a new MapConductor version:</p>
+<pre><code class="language-kotlin">// Update all modules to the same version
+def mapconductor_version = "1.1.0"  // New version
+
+dependencies {
+    implementation "com.mapconductor:mapconductor-core:$mapconductor_version"
+    implementation "com.mapconductor:mapconductor-for-googlemaps:$mapconductor_version"
+    // ... other modules
+}
+</code></pre>
+<h3 id="version-compatibility-1"><a class="header" href="#version-compatibility-1">Version Compatibility</a></h3>
+<p><strong>Important</strong>: Always use the same version for all MapConductor modules to ensure compatibility:</p>
+<pre><code class="language-kotlin">// ✅ Good: All modules use same version
+implementation "com.mapconductor:mapconductor-core:1.0.0"
+implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+
+// ❌ Bad: Mixed versions may cause issues
+implementation "com.mapconductor:mapconductor-core:1.0.0"
+implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
+</code></pre>
+<h2 id="release-notes"><a class="header" href="#release-notes">Release Notes</a></h2>
+<h3 id="version-100-current"><a class="header" href="#version-100-current">Version 1.0.0 (Current)</a></h3>
+<ul>
+<li>Initial stable release</li>
+<li>Support for Google Maps, Mapbox, HERE, and ArcGIS</li>
+<li>Core components: Marker, Circle, Polyline, Polygon, GroundImage</li>
+<li>Experimental modules: Icons, Marker Strategy, Native Strategy</li>
+<li>Jetpack Compose integration</li>
+<li>Android 8.0+ support</li>
+</ul>
+<h3 id="upcoming-releases"><a class="header" href="#upcoming-releases">Upcoming Releases</a></h3>
+<p>Future versions will include:</p>
+<ul>
+<li>Additional map providers</li>
+<li>Enhanced clustering algorithms</li>
+<li>Offline map support</li>
+<li>Performance improvements</li>
+<li>New experimental features</li>
+</ul>
+<h2 id="support-and-compatibility"><a class="header" href="#support-and-compatibility">Support and Compatibility</a></h2>
+<h3 id="minimum-requirements"><a class="header" href="#minimum-requirements">Minimum Requirements</a></h3>
+<ul>
+<li><strong>Android</strong>: API 26 (Android 8.0) or higher</li>
+<li><strong>Kotlin</strong>: 1.9.0 or higher</li>
+<li><strong>Jetpack Compose</strong>: 1.7.0 or higher</li>
+<li><strong>Java</strong>: JDK 17 or higher</li>
+</ul>
+<h3 id="device-support"><a class="header" href="#device-support">Device Support</a></h3>
+<ul>
+<li><strong>ARM</strong>: arm64-v8a, armeabi-v7a (native strategy only)</li>
+<li><strong>x86</strong>: x86, x86_64 (emulator support for native strategy)</li>
+<li><strong>Memory</strong>: Minimum 2GB RAM recommended for large datasets</li>
+</ul>
+<p>For questions about versions or compatibility, please check the <a href="https://docs.mapconductor.com">documentation</a> or file an issue on <a href="https://github.com/mapconductor/android-sdk/issues">GitHub</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="sdk-version-compatibility.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="sdk-version-compatibility.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

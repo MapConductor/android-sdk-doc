@@ -1,0 +1,846 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Advanced Examples - MapConductor Android SDK Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../installation.html">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="../sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="../provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="../setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="../setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="../components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="../components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="../components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="../components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="../components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="../components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="../components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="../components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="../states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="../states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="../states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="../states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="../states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="../core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="../core/georectbounds.html"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="../core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="../core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="../core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="../core/zoom-levels.html"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="../core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="../core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="../experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="../experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="../experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="../examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="../examples/advanced-usage.html" class="active"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="../api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MapConductor Android SDK Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="advanced-usage-examples"><a class="header" href="#advanced-usage-examples">Advanced Usage Examples</a></h1>
+<p>This section covers advanced patterns and techniques for building sophisticated mapping applications with MapConductor.</p>
+<h2 id="complex-interactions"><a class="header" href="#complex-interactions">Complex Interactions</a></h2>
+<h3 id="multi-selection-with-info-panel"><a class="header" href="#multi-selection-with-info-panel">Multi-Selection with Info Panel</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun MultiSelectionExample() {
+    var selectedMarkers by remember { mutableStateOf&lt;Set&lt;String&gt;&gt;(emptySet()) }
+
+    val markers = remember {
+        listOf(
+            MarkerState(
+                position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+                icon = DefaultIcon(fillColor = Color.Blue, label = "A"),
+                extra = "Location A"
+            ),
+            MarkerState(
+                position = GeoPointImpl.fromLatLong(37.7849, -122.4094),
+                icon = DefaultIcon(fillColor = Color.Green, label = "B"),
+                extra = "Location B"
+            ),
+            MarkerState(
+                position = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+                icon = DefaultIcon(fillColor = Color.Red, label = "C"),
+                extra = "Location C"
+            )
+        )
+    }
+
+    Row {
+        // Map
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(
+            modifier = Modifier.weight(1f),
+            state = mapViewState,
+            onMarkerClick = { markerState -&gt;
+                selectedMarkers = if (markerState.id in selectedMarkers) {
+                    selectedMarkers - markerState.id
+                } else {
+                    selectedMarkers + markerState.id
+                }
+            }
+        ) {
+            markers.forEach { marker -&gt;
+                val isSelected = marker.id in selectedMarkers
+                Marker(
+                    state = marker.copy(
+                        icon = DefaultIcon(
+                            fillColor = if (isSelected) Color.Yellow else marker.icon?.let {
+                                when (marker.extra) {
+                                    "Location A" -&gt; Color.Blue
+                                    "Location B" -&gt; Color.Green
+                                    else -&gt; Color.Red
+                                }
+                            } ?: Color.Gray,
+                            label = marker.extra?.toString()?.last()?.toString() ?: "?",
+                            scale = if (isSelected) 1.3f else 1.0f
+                        )
+                    )
+                )
+            }
+        }
+
+        // Info Panel
+        Card(modifier = Modifier.width(200.dp)) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text("Selected: ${selectedMarkers.size}")
+                selectedMarkers.forEach { markerId -&gt;
+                    val marker = markers.find { it.id == markerId }
+                    marker?.let {
+                        Text("• ${it.extra}")
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="dynamic-layer-management"><a class="header" href="#dynamic-layer-management">Dynamic Layer Management</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun LayerManagementExample() {
+    var visibleLayers by remember { mutableStateOf(setOf("markers", "areas")) }
+
+    val layerConfig = mapOf(
+        "markers" to "Show Markers",
+        "areas" to "Show Areas",
+        "routes" to "Show Routes",
+        "heatmap" to "Show Heatmap"
+    )
+
+    Column {
+        // Layer controls
+        Card(modifier = Modifier.padding(8.dp)) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text("Layers", style = MaterialTheme.typography.h6)
+                layerConfig.forEach { (layerId, label) -&gt;
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(
+                            checked = layerId in visibleLayers,
+                            onCheckedChange = { checked -&gt;
+                                visibleLayers = if (checked) {
+                                    visibleLayers + layerId
+                                } else {
+                                    visibleLayers - layerId
+                                }
+                            }
+                        )
+                        Text(label)
+                    }
+                }
+            }
+        }
+
+        // Map with conditional layers
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(state = mapViewState) {
+            // Markers layer
+            if ("markers" in visibleLayers) {
+                repeat(10) { i -&gt;
+                    Marker(
+                        position = GeoPointImpl.fromLatLong(
+                            37.7749 + i * 0.01,
+                            -122.4194 + i * 0.01
+                        ),
+                        icon = DefaultIcon(fillColor = Color.Blue, label = "$i")
+                    )
+                }
+            }
+
+            // Areas layer
+            if ("areas" in visibleLayers) {
+                repeat(3) { i -&gt;
+                    Circle(
+                        center = GeoPointImpl.fromLatLong(
+                            37.7749 + i * 0.02,
+                            -122.4194 + i * 0.02
+                        ),
+                        radius = 500.0 + i * 200,
+                        strokeColor = Color.Red,
+                        fillColor = Color.Red.copy(alpha = 0.2f)
+                    )
+                }
+            }
+
+            // Routes layer
+            if ("routes" in visibleLayers) {
+                Polyline(
+                    points = listOf(
+                        GeoPointImpl.fromLatLong(37.7749, -122.4194),
+                        GeoPointImpl.fromLatLong(37.7849, -122.4094),
+                        GeoPointImpl.fromLatLong(37.7949, -122.3994)
+                    ),
+                    strokeColor = Color.Green,
+                    strokeWidth = 4.dp
+                )
+            }
+
+            // Heatmap layer (simulated with circles)
+            if ("heatmap" in visibleLayers) {
+                repeat(20) { i -&gt;
+                    Circle(
+                        center = GeoPointImpl.fromLatLong(
+                            37.7749 + Random.nextFloat() * 0.02,
+                            -122.4194 + Random.nextFloat() * 0.02
+                        ),
+                        radius = 100.0,
+                        strokeColor = Color.Transparent,
+                        fillColor = Color.Red.copy(alpha = 0.3f)
+                    )
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="performance-optimization"><a class="header" href="#performance-optimization">Performance Optimization</a></h2>
+<h3 id="marker-clustering"><a class="header" href="#marker-clustering">Marker Clustering</a></h3>
+<pre><code class="language-kotlin">data class MarkerCluster(
+    val center: GeoPoint,
+    val markers: List&lt;MarkerState&gt;,
+    val radius: Double
+) : java.io.Serializable
+
+@Composable
+fun MarkerClusteringExample() {
+    var zoomLevel by remember { mutableStateOf(10f) }
+
+    val allMarkers = remember {
+        List(200) { i -&gt;
+            MarkerState(
+                position = GeoPointImpl.fromLatLong(
+                    37.7749 + (Random.nextFloat() - 0.5f) * 0.1,
+                    -122.4194 + (Random.nextFloat() - 0.5f) * 0.1
+                ),
+                extra = "Marker $i"
+            )
+        }
+    }
+
+    val displayedItems = remember(zoomLevel) {
+        if (zoomLevel &gt; 13) {
+            // Show individual markers at high zoom
+            allMarkers.map { Either.Left(it) }
+        } else {
+            // Cluster at low zoom
+            clusterMarkers(allMarkers, 1000.0 / zoomLevel).map { Either.Right(it) }
+        }
+    }
+
+    Column {
+        Slider(
+            value = zoomLevel,
+            onValueChange = { zoomLevel = it },
+            valueRange = 8f..16f,
+            modifier = Modifier.padding(16.dp)
+        )
+        Text("Zoom: ${zoomLevel.toInt()}")
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(state = mapViewState) {
+            displayedItems.forEach { item -&gt;
+                when (item) {
+                    is Either.Left -&gt; {
+                        // Individual marker
+                        Marker(item.value)
+                    }
+                    is Either.Right -&gt; {
+                        // Cluster
+                        val cluster = item.value
+                        Marker(
+                            position = cluster.center,
+                            icon = DefaultIcon(
+                                fillColor = Color.Red,
+                                label = cluster.markers.size.toString(),
+                                scale = 1.2f
+                            ),
+                            extra = "Cluster of ${cluster.markers.size} markers"
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+sealed class Either&lt;out L, out R&gt; : java.io.Serializable {
+    data class Left&lt;out L&gt;(val value: L) : Either&lt;L, Nothing&gt;()
+    data class Right&lt;out R&gt;(val value: R) : Either&lt;Nothing, R&gt;()
+}
+
+fun clusterMarkers(markers: List&lt;MarkerState&gt;, clusterRadius: Double): List&lt;MarkerCluster&gt; {
+    val clusters = mutableListOf&lt;MarkerCluster&gt;()
+    val unclustered = markers.toMutableList()
+
+    while (unclustered.isNotEmpty()) {
+        val seed = unclustered.removeFirst()
+        val clusterMembers = mutableListOf(seed)
+
+        val iterator = unclustered.iterator()
+        while (iterator.hasNext()) {
+            val marker = iterator.next()
+            if (calculateDistance(seed.position, marker.position) &lt;= clusterRadius) {
+                clusterMembers.add(marker)
+                iterator.remove()
+            }
+        }
+
+        val center = calculateCentroid(clusterMembers.map { it.position })
+        clusters.add(MarkerCluster(center, clusterMembers, clusterRadius))
+    }
+
+    return clusters
+}
+
+fun calculateCentroid(points: List&lt;GeoPoint&gt;): GeoPoint {
+    val avgLat = points.map { it.latitude }.average()
+    val avgLng = points.map { it.longitude }.average()
+    return GeoPointImpl.fromLatLong(avgLat, avgLng)
+}
+</code></pre>
+<h3 id="viewport-based-loading"><a class="header" href="#viewport-based-loading">Viewport-based Loading</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ViewportBasedLoadingExample() {
+    var currentViewport by remember { mutableStateOf&lt;GeoRectBounds?&gt;(null) }
+    var visibleMarkers by remember { mutableStateOf&lt;List&lt;MarkerState&gt;&gt;(emptyList()) }
+
+    // Simulate large dataset
+    val allMarkers = remember {
+        List(1000) { i -&gt;
+            MarkerState(
+                position = GeoPointImpl.fromLatLong(
+                    37.5 + Random.nextFloat() * 0.5,
+                    -122.7 + Random.nextFloat() * 0.5
+                ),
+                extra = "Marker $i"
+            )
+        }
+    }
+
+    LaunchedEffect(currentViewport) {
+        currentViewport?.let { viewport -&gt;
+            visibleMarkers = allMarkers.filter { marker -&gt;
+                marker.position.latitude &gt;= viewport.southwest.latitude &amp;&amp;
+                marker.position.latitude &lt;= viewport.northeast.latitude &amp;&amp;
+                marker.position.longitude &gt;= viewport.southwest.longitude &amp;&amp;
+                marker.position.longitude &lt;= viewport.northeast.longitude
+            }
+        }
+    }
+
+    Column {
+        Text("Visible markers: ${visibleMarkers.size} / ${allMarkers.size}")
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(
+            state = mapViewState,
+            onMapLoaded = {
+                // Set initial viewport
+                currentViewport = GeoRectBounds(
+                    southwest = GeoPointImpl.fromLatLong(37.7, -122.5),
+                    northeast = GeoPointImpl.fromLatLong(37.8, -122.3)
+                )
+            }
+        ) {
+            visibleMarkers.forEach { marker -&gt;
+                Marker(marker)
+            }
+
+            // Show viewport bounds
+            currentViewport?.let { viewport -&gt;
+                val bounds = listOf(
+                    viewport.southwest,
+                    GeoPointImpl.fromLatLong(viewport.southwest.latitude, viewport.northeast.longitude),
+                    viewport.northeast,
+                    GeoPointImpl.fromLatLong(viewport.northeast.latitude, viewport.southwest.longitude),
+                    viewport.southwest
+                )
+
+                Polyline(
+                    points = bounds,
+                    strokeColor = Color.Red,
+                    strokeWidth = 2.dp
+                )
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="custom-components"><a class="header" href="#custom-components">Custom Components</a></h2>
+<h3 id="custom-marker-with-animation"><a class="header" href="#custom-marker-with-animation">Custom Marker with Animation</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun AnimatedMarkerExample() {
+    var isAnimating by remember { mutableStateOf(false) }
+    var markerScale by remember { mutableStateOf(1.0f) }
+
+    LaunchedEffect(isAnimating) {
+        if (isAnimating) {
+            while (isAnimating) {
+                delay(100)
+                markerScale = 1.0f + sin(System.currentTimeMillis() / 300.0).toFloat() * 0.3f
+            }
+        } else {
+            markerScale = 1.0f
+        }
+    }
+
+    Column {
+        Button(onClick = { isAnimating = !isAnimating }) {
+            Text(if (isAnimating) "Stop Animation" else "Start Animation")
+        }
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(state = mapViewState) {
+            Marker(
+                position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+                icon = DefaultIcon(
+                    fillColor = Color.Red,
+                    label = "🎯",
+                    scale = markerScale
+                ),
+                extra = "Animated marker"
+            )
+        }
+    }
+}
+</code></pre>
+<h3 id="information-overlay-system"><a class="header" href="#information-overlay-system">Information Overlay System</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun InformationOverlayExample() {
+    var selectedFeature by remember { mutableStateOf&lt;String?&gt;(null) }
+    var overlayPosition by remember { mutableStateOf&lt;GeoPoint?&gt;(null) }
+
+    val features = mapOf(
+        "restaurant" to GeoPointImpl.fromLatLong(37.7749, -122.4194),
+        "hotel" to GeoPointImpl.fromLatLong(37.7849, -122.4094),
+        "museum" to GeoPointImpl.fromLatLong(37.7649, -122.4294)
+    )
+
+    Box {
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(
+            state = mapViewState,
+            onMarkerClick = { markerState -&gt;
+                selectedFeature = markerState.extra as? String
+                overlayPosition = markerState.position
+            },
+            onMapClick = {
+                selectedFeature = null
+                overlayPosition = null
+            }
+        ) {
+            features.forEach { (type, position) -&gt;
+                Marker(
+                    position = position,
+                    icon = DefaultIcon(
+                        fillColor = when (type) {
+                            "restaurant" -&gt; Color.Red
+                            "hotel" -&gt; Color.Blue
+                            "museum" -&gt; Color.Green
+                            else -&gt; Color.Gray
+                        },
+                        label = when (type) {
+                            "restaurant" -&gt; "🍽️"
+                            "hotel" -&gt; "🏨"
+                            "museum" -&gt; "🏛️"
+                            else -&gt; "?"
+                        }
+                    ),
+                    extra = type
+                )
+            }
+        }
+
+        // Overlay information panel
+        selectedFeature?.let { feature -&gt;
+            Card(
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(16.dp)
+                    .width(200.dp),
+                elevation = 8.dp
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = feature.capitalize(),
+                        style = MaterialTheme.typography.h6
+                    )
+                    Text("Detailed information about this $feature")
+
+                    Row {
+                        Button(
+                            onClick = { /* Navigate action */ },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Navigate")
+                        }
+
+                        Button(
+                            onClick = { /* More info action */ },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Info")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="data-integration"><a class="header" href="#data-integration">Data Integration</a></h2>
+<h3 id="real-time-data-updates"><a class="header" href="#real-time-data-updates">Real-time Data Updates</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun RealTimeDataExample() {
+    var vehiclePositions by remember { mutableStateOf&lt;Map&lt;String, GeoPoint&gt;&gt;(emptyMap()) }
+    var lastUpdate by remember { mutableStateOf&lt;Long&gt;(0) }
+
+    // Simulate real-time vehicle tracking
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(2000) // Update every 2 seconds
+
+            val newPositions = mutableMapOf&lt;String, GeoPoint&gt;()
+            repeat(5) { i -&gt;
+                val vehicleId = "vehicle_$i"
+                val currentPos = vehiclePositions[vehicleId] ?: GeoPointImpl.fromLatLong(
+                    37.7749 + Random.nextFloat() * 0.02,
+                    -122.4194 + Random.nextFloat() * 0.02
+                )
+
+                // Move vehicle slightly
+                val newLat = currentPos.latitude + (Random.nextFloat() - 0.5f) * 0.002
+                val newLng = currentPos.longitude + (Random.nextFloat() - 0.5f) * 0.002
+                newPositions[vehicleId] = GeoPointImpl.fromLatLong(newLat, newLng)
+            }
+
+            vehiclePositions = newPositions
+            lastUpdate = System.currentTimeMillis()
+        }
+    }
+
+    Column {
+        Text("Last update: ${Date(lastUpdate)}")
+        Text("Vehicles: ${vehiclePositions.size}")
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(state = mapViewState) {
+            vehiclePositions.forEach { (vehicleId, position) -&gt;
+                Marker(
+                    position = position,
+                    icon = DefaultIcon(
+                        fillColor = Color.Blue,
+                        label = "🚗",
+                        scale = 1.2f
+                    ),
+                    extra = vehicleId
+                )
+
+                // Vehicle range circle
+                Circle(
+                    center = position,
+                    radius = 200.0,
+                    strokeColor = Color.Blue.copy(alpha = 0.5f),
+                    fillColor = Color.Blue.copy(alpha = 0.1f)
+                )
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="geofencing"><a class="header" href="#geofencing">Geofencing</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun GeofencingExample() {
+    var userPosition by remember {
+        mutableStateOf(GeoPointImpl.fromLatLong(37.7749, -122.4194))
+    }
+    var alerts by remember { mutableStateOf&lt;List&lt;String&gt;&gt;(emptyList()) }
+
+    val geofences = listOf(
+        Triple(
+            GeoPointImpl.fromLatLong(37.7800, -122.4100),
+            300.0,
+            "Downtown Zone"
+        ),
+        Triple(
+            GeoPointImpl.fromLatLong(37.7700, -122.4300),
+            200.0,
+            "Restricted Area"
+        )
+    )
+
+    // Check geofence violations
+    LaunchedEffect(userPosition) {
+        val newAlerts = mutableListOf&lt;String&gt;()
+        geofences.forEach { (center, radius, name) -&gt;
+            val distance = calculateDistance(userPosition, center)
+            if (distance &lt;= radius) {
+                newAlerts.add("Entered: $name")
+            }
+        }
+        alerts = newAlerts
+    }
+
+    Column {
+        if (alerts.isNotEmpty()) {
+            Card(
+                backgroundColor = Color.Yellow.copy(alpha = 0.3f),
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Geofence Alerts:")
+                    alerts.forEach { alert -&gt;
+                        Text("• $alert")
+                    }
+                }
+            }
+        }
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+MapView(
+            state = mapViewState,
+            onMapClick = { geoPoint -&gt;
+                userPosition = geoPoint
+            }
+        ) {
+            // Draw geofences
+            geofences.forEach { (center, radius, name) -&gt;
+                Circle(
+                    center = center,
+                    radius = radius,
+                    strokeColor = Color.Red,
+                    strokeWidth = 2.dp,
+                    fillColor = Color.Red.copy(alpha = 0.1f),
+                    extra = name
+                )
+
+                Marker(
+                    position = center,
+                    icon = DefaultIcon(
+                        fillColor = Color.Red,
+                        label = name.first().toString(),
+                        scale = 0.8f
+                    )
+                )
+            }
+
+            // User position
+            Marker(
+                position = userPosition,
+                icon = DefaultIcon(
+                    fillColor = Color.Blue,
+                    label = "👤",
+                    scale = 1.2f
+                ),
+                draggable = true
+            )
+        }
+    }
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../examples/basic-usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../api/event-handlers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../examples/basic-usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../api/event-handlers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

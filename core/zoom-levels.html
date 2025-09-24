@@ -1,0 +1,664 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Zoom Levels - MapConductor Android SDK Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../installation.html">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="../sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="../provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="../setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="../setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="../components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="../components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="../components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="../components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="../components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="../components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="../components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="../components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="../states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="../states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="../states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="../states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="../states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="../core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="../core/georectbounds.html"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="../core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="../core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="../core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="../core/zoom-levels.html" class="active"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="../core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="../core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="../experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="../experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="../experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="../examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="../examples/advanced-usage.html"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="../api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MapConductor Android SDK Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="zoom-levels"><a class="header" href="#zoom-levels">Zoom Levels</a></h1>
+<p>MapConductor uses zoom levels to control the scale and detail of the map display. The zoom level system approximately follows Google Maps conventions but may vary slightly between map providers due to their underlying implementation differences.</p>
+<h2 id="understanding-zoom-levels"><a class="header" href="#understanding-zoom-levels">Understanding Zoom Levels</a></h2>
+<p>Zoom levels in MapConductor are represented as <code>Double</code> values, typically ranging from 0 to 21, where:</p>
+<ul>
+<li><strong>Higher numbers</strong> = More zoomed in (more detail, smaller area)</li>
+<li><strong>Lower numbers</strong> = More zoomed out (less detail, larger area)</li>
+<li><strong>Fractional values</strong> = Smooth interpolation between integer levels</li>
+</ul>
+<pre><code class="language-kotlin">// Examples of different zoom levels
+val worldView = 2.0        // See continents
+val countryView = 6.0      // See entire countries
+val cityView = 10.0        // See cities
+val streetView = 15.0      // See streets
+val buildingView = 18.0    // See individual buildings
+</code></pre>
+<h2 id="zoom-level-reference"><a class="header" href="#zoom-level-reference">Zoom Level Reference</a></h2>
+<h3 id="global-scale-0-5"><a class="header" href="#global-scale-0-5">Global Scale (0-5)</a></h3>
+<pre><code class="language-kotlin">// World and continent level
+val worldLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(0.0, 0.0),
+    zoom = 2.0  // Shows continents and oceans
+)
+
+val continentLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(39.8283, -98.5795), // USA center
+    zoom = 4.0  // Shows entire continent
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Global data visualization</li>
+<li>Continental overview</li>
+<li>Flight tracking applications</li>
+<li>World weather maps</li>
+</ul>
+<h3 id="regional-scale-6-9"><a class="header" href="#regional-scale-6-9">Regional Scale (6-9)</a></h3>
+<pre><code class="language-kotlin">// Country and state level
+val countryLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(39.8283, -98.5795),
+    zoom = 6.0  // Shows entire country
+)
+
+val stateLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(36.7783, -119.4179), // California center
+    zoom = 8.0  // Shows state or large region
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>National statistics</li>
+<li>State-level data</li>
+<li>Regional weather</li>
+<li>Transportation networks</li>
+</ul>
+<h3 id="metropolitan-scale-10-12"><a class="header" href="#metropolitan-scale-10-12">Metropolitan Scale (10-12)</a></h3>
+<pre><code class="language-kotlin">// City and metropolitan area level
+val metropolitanLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194), // San Francisco
+    zoom = 10.0  // Shows metropolitan area
+)
+
+val cityLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 12.0  // Shows city center and suburbs
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>City planning</li>
+<li>Public transportation</li>
+<li>Delivery zones</li>
+<li>District boundaries</li>
+</ul>
+<h3 id="neighborhood-scale-13-15"><a class="header" href="#neighborhood-scale-13-15">Neighborhood Scale (13-15)</a></h3>
+<pre><code class="language-kotlin">// District and neighborhood level
+val districtLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 13.0  // Shows districts
+)
+
+val neighborhoodLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 15.0  // Shows neighborhoods and major streets
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Local business directories</li>
+<li>School districts</li>
+<li>Neighborhood services</li>
+<li>Real estate search</li>
+</ul>
+<h3 id="street-scale-16-18"><a class="header" href="#street-scale-16-18">Street Scale (16-18)</a></h3>
+<pre><code class="language-kotlin">// Street and block level
+val streetLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 16.0  // Shows street layout
+)
+
+val detailedStreetLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 18.0  // Shows individual streets and small buildings
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Navigation applications</li>
+<li>Address lookup</li>
+<li>Street-level services</li>
+<li>Walking directions</li>
+</ul>
+<h3 id="building-scale-19-21"><a class="header" href="#building-scale-19-21">Building Scale (19-21)</a></h3>
+<pre><code class="language-kotlin">// Building and detail level
+val buildingLevel = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 19.0  // Shows individual buildings
+)
+
+val maximumDetail = MapCameraPositionImpl(
+    position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    zoom = 21.0  // Maximum zoom level
+)
+</code></pre>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Building inspection</li>
+<li>Asset management</li>
+<li>Indoor mapping</li>
+<li>Detailed surveying</li>
+</ul>
+<h2 id="provider-variations"><a class="header" href="#provider-variations">Provider Variations</a></h2>
+<p>While MapConductor normalizes zoom levels across providers, there can be subtle differences:</p>
+<h3 id="google-maps"><a class="header" href="#google-maps">Google Maps</a></h3>
+<ul>
+<li>Closely follows the reference scale</li>
+<li>Smooth fractional zoom support</li>
+<li>Range: 0-21</li>
+</ul>
+<h3 id="mapbox"><a class="header" href="#mapbox">Mapbox</a></h3>
+<ul>
+<li>Similar to Google Maps</li>
+<li>Excellent fractional zoom interpolation</li>
+<li>Range: 0-22 (may vary by style)</li>
+</ul>
+<h3 id="here-maps"><a class="header" href="#here-maps">HERE Maps</a></h3>
+<ul>
+<li>Comparable scale with minor variations</li>
+<li>Good fractional zoom support</li>
+<li>Range: 0-20</li>
+</ul>
+<h3 id="arcgis"><a class="header" href="#arcgis">ArcGIS</a></h3>
+<ul>
+<li>May have different detail levels at equivalent zoom</li>
+<li>Scene view (3D) may behave differently</li>
+<li>Range varies by basemap</li>
+</ul>
+<h2 id="dynamic-zoom-selection"><a class="header" href="#dynamic-zoom-selection">Dynamic Zoom Selection</a></h2>
+<h3 id="content-based-zoom"><a class="header" href="#content-based-zoom">Content-Based Zoom</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ContentBasedZoom() {
+    val markers = remember {
+        listOf(
+            GeoPointImpl.fromLatLong(37.7749, -122.4194),
+            GeoPointImpl.fromLatLong(37.7849, -122.4094),
+            GeoPointImpl.fromLatLong(37.7949, -122.3994)
+        )
+    }
+
+    // Calculate bounds containing all markers
+    val bounds = GeoRectBounds()
+    markers.forEach { bounds.extend(it) }
+
+    // Select appropriate zoom for content
+    val appropriateZoom = when {
+        bounds.isEmpty -&gt; 15.0  // Default for single point
+        else -&gt; {
+            val span = bounds.toSpan()
+            when {
+                span?.latitude ?: 0.0 &gt; 10.0 -&gt; 4.0   // Large area
+                span?.latitude ?: 0.0 &gt; 1.0 -&gt; 8.0    // Medium area
+                span?.latitude ?: 0.0 &gt; 0.1 -&gt; 12.0   // Small area
+                span?.latitude ?: 0.0 &gt; 0.01 -&gt; 16.0  // Very small area
+                else -&gt; 18.0                          // Minimal area
+            }
+        }
+    }
+
+    val cameraPosition = MapCameraPositionImpl(
+        position = bounds.center ?: markers.first(),
+        zoom = appropriateZoom
+    )
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(
+        state = mapViewState,
+        cameraPosition = cameraPosition
+    ) {
+        markers.forEach { position -&gt;
+            Marker(
+                position = position,
+                icon = DefaultIcon(fillColor = Color.Blue)
+            )
+        }
+    }
+}
+</code></pre>
+<h3 id="user-controlled-zoom"><a class="header" href="#user-controlled-zoom">User-Controlled Zoom</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ZoomControls() {
+    var currentZoom by remember { mutableStateOf(15.0) }
+    val center = GeoPointImpl.fromLatLong(37.7749, -122.4194)
+
+    Column {
+        // Zoom level display
+        Text("Zoom Level: ${String.format("%.1f", currentZoom)}")
+
+        // Zoom controls
+        Row {
+            Button(
+                onClick = { currentZoom = (currentZoom + 1).coerceAtMost(21.0) }
+            ) {
+                Text("+")
+            }
+
+            Button(
+                onClick = { currentZoom = (currentZoom - 1).coerceAtLeast(0.0) }
+            ) {
+                Text("-")
+            }
+        }
+
+        // Preset zoom buttons
+        Row {
+            Button(onClick = { currentZoom = 12.0 }) { Text("City") }
+            Button(onClick = { currentZoom = 15.0 }) { Text("Street") }
+            Button(onClick = { currentZoom = 18.0 }) { Text("Building") }
+        }
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+        MapView(
+            state = mapViewState,
+            cameraPosition = MapCameraPositionImpl(
+                position = center,
+                zoom = currentZoom
+            )
+        ) {
+            Marker(
+                position = center,
+                icon = DefaultIcon(fillColor = Color.Red)
+            )
+        }
+    }
+}
+</code></pre>
+<h2 id="adaptive-zoom-strategies"><a class="header" href="#adaptive-zoom-strategies">Adaptive Zoom Strategies</a></h2>
+<h3 id="performance-based-zoom"><a class="header" href="#performance-based-zoom">Performance-Based Zoom</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun PerformanceAdaptiveZoom() {
+    val markerCount = 1000
+    var displayedMarkers by remember { mutableStateOf&lt;List&lt;GeoPoint&gt;&gt;(emptyList()) }
+
+    val cameraPosition = MapCameraPositionImpl(
+        position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+        zoom = 12.0
+    )
+
+    LaunchedEffect(cameraPosition) {
+        // Adapt marker display based on zoom level
+        displayedMarkers = when {
+            cameraPosition.zoom &lt; 8.0 -&gt; {
+                // Very low zoom: show only major markers
+                allMarkers.filter { it.importance &gt; 0.8 }
+            }
+            cameraPosition.zoom &lt; 12.0 -&gt; {
+                // Medium zoom: show important markers
+                allMarkers.filter { it.importance &gt; 0.5 }
+            }
+            cameraPosition.zoom &lt; 16.0 -&gt; {
+                // High zoom: show most markers
+                allMarkers.filter { it.importance &gt; 0.2 }
+            }
+            else -&gt; {
+                // Maximum zoom: show all markers
+                allMarkers
+            }
+        }
+    }
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(
+        state = mapViewState,
+        cameraPosition = cameraPosition
+    ) {
+        displayedMarkers.forEach { marker -&gt;
+            Marker(
+                position = marker,
+                icon = DefaultIcon(
+                    scale = when {
+                        cameraPosition.zoom &lt; 10.0 -&gt; 1.2f
+                        cameraPosition.zoom &lt; 15.0 -&gt; 1.0f
+                        else -&gt; 0.8f
+                    }
+                )
+            )
+        }
+    }
+}
+</code></pre>
+<h3 id="context-aware-zoom"><a class="header" href="#context-aware-zoom">Context-Aware Zoom</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ContextAwareZoom() {
+    val userLocation = GeoPointImpl.fromLatLong(37.7749, -122.4194)
+    val searchResults = remember { /* your search results */ }
+
+    // Select zoom based on context
+    val contextualZoom = when {
+        searchResults.isEmpty() -&gt; 15.0  // User location focus
+        searchResults.size == 1 -&gt; 16.0  // Single result
+        searchResults.size &lt; 5 -&gt; 14.0   // Few results
+        else -&gt; {
+            // Calculate appropriate zoom for all results
+            val bounds = GeoRectBounds()
+            searchResults.forEach { bounds.extend(it.location) }
+            calculateZoomForBounds(bounds)
+        }
+    }
+
+    val cameraPosition = MapCameraPositionImpl(
+        position = if (searchResults.isEmpty()) userLocation else bounds.center!!,
+        zoom = contextualZoom
+    )
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(
+        state = mapViewState,
+        cameraPosition = cameraPosition
+    ) {
+        // User location
+        Marker(
+            position = userLocation,
+            icon = DefaultIcon(fillColor = Color.Blue, label = "You")
+        )
+
+        // Search results
+        searchResults.forEach { result -&gt;
+            Marker(
+                position = result.location,
+                icon = DefaultIcon(fillColor = Color.Red)
+            )
+        }
+    }
+}
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<h3 id="zoom-level-selection"><a class="header" href="#zoom-level-selection">Zoom Level Selection</a></h3>
+<ol>
+<li><strong>Content-Driven</strong>: Choose zoom based on what you want to show</li>
+<li><strong>User Context</strong>: Consider user's current task and location</li>
+<li><strong>Performance</strong>: Higher zoom levels require more detail rendering</li>
+<li><strong>Provider Limitations</strong>: Test across all target map providers</li>
+</ol>
+<h3 id="smooth-transitions"><a class="header" href="#smooth-transitions">Smooth Transitions</a></h3>
+<pre><code class="language-kotlin">// Smooth zoom animation
+fun animateToZoom(targetZoom: Double) {
+    val animator = ValueAnimator.ofFloat(currentZoom.toFloat(), targetZoom.toFloat())
+    animator.duration = 1000
+    animator.addUpdateListener { animation -&gt;
+        val newZoom = animation.animatedValue as Float
+        updateCameraPosition(currentPosition.copy(zoom = newZoom.toDouble()))
+    }
+    animator.start()
+}
+</code></pre>
+<h3 id="responsive-design"><a class="header" href="#responsive-design">Responsive Design</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ResponsiveZoom() {
+    val configuration = LocalConfiguration.current
+    val isTablet = configuration.screenWidthDp &gt;= 600
+
+    // Adjust zoom for screen size
+    val baseZoom = if (isTablet) 14.0 else 16.0
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(
+        state = mapViewState,
+        cameraPosition = MapCameraPositionImpl(
+            position = center,
+            zoom = baseZoom
+        )
+    ) {
+        // Content
+    }
+}
+</code></pre>
+<h2 id="common-pitfalls"><a class="header" href="#common-pitfalls">Common Pitfalls</a></h2>
+<ol>
+<li><strong>Provider Inconsistency</strong>: Test zoom levels across all target providers</li>
+<li><strong>Performance Impact</strong>: Higher zoom levels increase rendering cost</li>
+<li><strong>Fractional Zoom</strong>: Not all providers handle fractional zoom identically</li>
+<li><strong>Minimum/Maximum</strong>: Respect provider-specific zoom limits</li>
+<li><strong>Gesture Conflicts</strong>: Consider user zoom gestures vs programmatic zoom</li>
+</ol>
+<h2 id="testing-zoom-levels"><a class="header" href="#testing-zoom-levels">Testing Zoom Levels</a></h2>
+<pre><code class="language-kotlin">@Composable
+fun ZoomLevelTester() {
+    val testZoomLevels = listOf(0.0, 5.0, 10.0, 15.0, 20.0)
+    var currentTestIndex by remember { mutableStateOf(0) }
+
+    Column {
+        Text("Testing Zoom Level: ${testZoomLevels[currentTestIndex]}")
+
+        Button(
+            onClick = {
+                currentTestIndex = (currentTestIndex + 1) % testZoomLevels.size
+            }
+        ) {
+            Text("Next Zoom Level")
+        }
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+        MapView(
+            state = mapViewState,
+            cameraPosition = MapCameraPositionImpl(
+                position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+                zoom = testZoomLevels[currentTestIndex]
+            )
+        ) {
+            Marker(
+                position = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+                icon = DefaultIcon(fillColor = Color.Red)
+            )
+        }
+    }
+}
+</code></pre>
+<p>Understanding and properly utilizing zoom levels is crucial for creating effective mapping applications that provide the right level of detail for your users' needs.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../core/mapviewholder.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../core/marker-icons.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../core/mapviewholder.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../core/marker-icons.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

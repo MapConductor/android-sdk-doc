@@ -1,0 +1,615 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>GeoRectBounds - MapConductor Android SDK Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../installation.html">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="../sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="../provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="../setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="../setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="../setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="../components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="../components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="../components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="../components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="../components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="../components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="../components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="../components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="../states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="../states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="../states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="../states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="../states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="../core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="../core/georectbounds.html" class="active"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="../core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="../core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="../core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="../core/zoom-levels.html"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="../core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="../core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="../experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="../experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="../experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="../examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="../examples/advanced-usage.html"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="../api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MapConductor Android SDK Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="georectbounds"><a class="header" href="#georectbounds">GeoRectBounds</a></h1>
+<p><code>GeoRectBounds</code> represents a rectangular geographic area defined by southwest and northeast corner points. It is used for defining map regions, ground image bounds, and viewport calculations.</p>
+<h2 id="constructor"><a class="header" href="#constructor">Constructor</a></h2>
+<pre><code class="language-kotlin">class GeoRectBounds(
+    southWest: GeoPointImpl? = null,
+    northEast: GeoPointImpl? = null
+)
+</code></pre>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<h3 id="corner-points"><a class="header" href="#corner-points">Corner Points</a></h3>
+<ul>
+<li><strong><code>southWest: GeoPointImpl?</code></strong>: Southwest corner (bottom-left) of the rectangle</li>
+<li><strong><code>northEast: GeoPointImpl?</code></strong>: Northeast corner (top-right) of the rectangle</li>
+<li><strong><code>isEmpty: Boolean</code></strong>: Returns <code>true</code> if the bounds are not defined</li>
+</ul>
+<h3 id="computed-properties"><a class="header" href="#computed-properties">Computed Properties</a></h3>
+<ul>
+<li><strong><code>center: GeoPointImpl?</code></strong>: Center point of the bounds</li>
+<li><strong><code>toSpan(): GeoPointImpl?</code></strong>: Returns the span (width/height) as a GeoPoint</li>
+</ul>
+<h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
+<h3 id="creating-bounds"><a class="header" href="#creating-bounds">Creating Bounds</a></h3>
+<pre><code class="language-kotlin">// Define a rectangular area
+val bounds = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+    northeast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+)
+
+// Empty bounds (to be extended later)
+val bounds = GeoRectBounds()
+</code></pre>
+<h3 id="using-with-groundimage"><a class="header" href="#using-with-groundimage">Using with GroundImage</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun GroundImageExample() {
+    val imageBounds = GeoRectBounds(
+        southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+        northEast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+    )
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(state = mapViewState) {
+        val context = LocalContext.current
+        AppCompatResources.getDrawable(context, R.drawable.overlay_image)?.let { drawable -&gt;
+            GroundImage(
+                bounds = imageBounds,
+                image = drawable,
+                opacity = 0.7f
+            )
+        }
+    }
+}
+</code></pre>
+<h2 id="dynamic-bounds-construction"><a class="header" href="#dynamic-bounds-construction">Dynamic Bounds Construction</a></h2>
+<h3 id="extending-bounds"><a class="header" href="#extending-bounds">Extending Bounds</a></h3>
+<p>The bounds can be dynamically extended to include new points:</p>
+<pre><code class="language-kotlin">fun extend(point: GeoPoint)
+
+// Usage
+val bounds = GeoRectBounds() // Start empty
+
+val points = listOf(
+    GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    GeoPointImpl.fromLatLong(37.7849, -122.4094),
+    GeoPointImpl.fromLatLong(37.7649, -122.4294)
+)
+
+points.forEach { point -&gt;
+    bounds.extend(point) // Bounds grow to include each point
+}
+
+println("Final bounds: $bounds")
+</code></pre>
+<h3 id="union-of-bounds"><a class="header" href="#union-of-bounds">Union of Bounds</a></h3>
+<pre><code class="language-kotlin">fun union(other: GeoRectBounds): GeoRectBounds
+
+// Usage
+val bounds1 = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+    northEast = GeoPointImpl.fromLatLong(37.7749, -122.4194)
+)
+
+val bounds2 = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(37.7749, -122.4194),
+    northEast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+)
+
+val combinedBounds = bounds1.union(bounds2) // Contains both areas
+</code></pre>
+<h2 id="point-and-bounds-testing"><a class="header" href="#point-and-bounds-testing">Point and Bounds Testing</a></h2>
+<h3 id="contains-point"><a class="header" href="#contains-point">Contains Point</a></h3>
+<pre><code class="language-kotlin">fun contains(point: GeoPoint): Boolean
+
+// Usage
+val bounds = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+    northEast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+)
+
+val testPoint = GeoPointImpl.fromLatLong(37.7749, -122.4194)
+val isInside = bounds.contains(testPoint)
+
+println("Point is inside bounds: $isInside")
+</code></pre>
+<h3 id="bounds-intersection"><a class="header" href="#bounds-intersection">Bounds Intersection</a></h3>
+<pre><code class="language-kotlin">fun intersects(other: GeoRectBounds): Boolean
+
+// Usage
+val bounds1 = GeoRectBounds(/* ... */)
+val bounds2 = GeoRectBounds(/* ... */)
+
+val doIntersect = bounds1.intersects(bounds2)
+println("Bounds intersect: $doIntersect")
+</code></pre>
+<h2 id="practical-examples"><a class="header" href="#practical-examples">Practical Examples</a></h2>
+<h3 id="viewport-bounds-calculation"><a class="header" href="#viewport-bounds-calculation">Viewport Bounds Calculation</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun ViewportBoundsExample() {
+    var viewportBounds by remember { mutableStateOf&lt;GeoRectBounds?&gt;(null) }
+
+    // Simulate calculating viewport from visible markers
+    val markers = remember {
+        listOf(
+            GeoPointImpl.fromLatLong(37.7749, -122.4194),
+            GeoPointImpl.fromLatLong(37.7849, -122.4094),
+            GeoPointImpl.fromLatLong(37.7649, -122.4294),
+            GeoPointImpl.fromLatLong(37.7949, -122.3994)
+        )
+    }
+
+    LaunchedEffect(markers) {
+        val bounds = GeoRectBounds()
+        markers.forEach { marker -&gt;
+            bounds.extend(marker)
+        }
+        viewportBounds = bounds
+    }
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(state = mapViewState) {
+        // Show all markers
+        markers.forEach { position -&gt;
+            Marker(
+                position = position,
+                icon = DefaultIcon(fillColor = Color.Blue)
+            )
+        }
+
+        // Show viewport bounds as a polygon
+        viewportBounds?.let { bounds -&gt;
+            if (!bounds.isEmpty) {
+                val sw = bounds.southWest!!
+                val ne = bounds.northEast!!
+
+                val boundsPolygon = listOf(
+                    sw,
+                    GeoPointImpl.fromLatLong(sw.latitude, ne.longitude),
+                    ne,
+                    GeoPointImpl.fromLatLong(ne.latitude, sw.longitude),
+                    sw // Close the polygon
+                )
+
+                Polygon(
+                    points = boundsPolygon,
+                    strokeColor = Color.Red,
+                    strokeWidth = 2.dp,
+                    fillColor = Color.Red.copy(alpha = 0.1f)
+                )
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="bounds-based-loading"><a class="header" href="#bounds-based-loading">Bounds-based Loading</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun BoundsBasedLoadingExample() {
+    var currentBounds by remember { mutableStateOf&lt;GeoRectBounds?&gt;(null) }
+    var markersInBounds by remember { mutableStateOf&lt;List&lt;GeoPointImpl&gt;&gt;(emptyList()) }
+
+    // Simulate all available markers
+    val allMarkers = remember {
+        List(100) { i -&gt;
+            GeoPointImpl.fromLatLong(
+                37.7 + (i % 10) * 0.01,
+                -122.5 + (i / 10) * 0.01
+            )
+        }
+    }
+
+    // Filter markers based on current bounds
+    LaunchedEffect(currentBounds) {
+        markersInBounds = currentBounds?.let { bounds -&gt;
+            if (bounds.isEmpty) {
+                emptyList()
+            } else {
+                allMarkers.filter { marker -&gt;
+                    bounds.contains(marker)
+                }
+            }
+        } ?: emptyList()
+    }
+
+    Column {
+        Text("Markers in bounds: ${markersInBounds.size}/${allMarkers.size}")
+
+        Button(
+            onClick = {
+                // Simulate setting viewport bounds
+                currentBounds = GeoRectBounds(
+                    southWest = GeoPointImpl.fromLatLong(37.70, -122.50),
+                    northEast = GeoPointImpl.fromLatLong(37.75, -122.45)
+                )
+            }
+        ) {
+            Text("Set Viewport")
+        }
+
+        // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+        MapView(state = mapViewState) {
+            // Show only markers within bounds
+            markersInBounds.forEach { position -&gt;
+                Marker(
+                    position = position,
+                    icon = DefaultIcon(
+                        fillColor = Color.Green,
+                        scale = 0.8f
+                    )
+                )
+            }
+
+            // Show current bounds
+            currentBounds?.let { bounds -&gt;
+                if (!bounds.isEmpty) {
+                    val sw = bounds.southWest!!
+                    val ne = bounds.northEast!!
+
+                    Polygon(
+                        points = listOf(
+                            sw,
+                            GeoPointImpl.fromLatLong(sw.latitude, ne.longitude),
+                            ne,
+                            GeoPointImpl.fromLatLong(ne.latitude, sw.longitude),
+                            sw
+                        ),
+                        strokeColor = Color.Blue,
+                        strokeWidth = 3.dp,
+                        fillColor = Color.Blue.copy(alpha = 0.1f)
+                    )
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="interactive-bounds-editor"><a class="header" href="#interactive-bounds-editor">Interactive Bounds Editor</a></h3>
+<pre><code class="language-kotlin">@Composable
+fun BoundsEditorExample() {
+    var bounds by remember {
+        mutableStateOf(
+            GeoRectBounds(
+                southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+                northEast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+            )
+        )
+    }
+
+    // Replace MapView with your chosen map provider, such as GoogleMapsView, MapboxMapView
+    MapView(
+        state = mapViewState,
+        onMarkerDrag = { markerState -&gt;
+            val newPosition = markerState.position
+            when (markerState.extra) {
+                "SW" -&gt; {
+                    bounds = GeoRectBounds(
+                        southWest = newPosition as GeoPointImpl,
+                        northEast = bounds.northEast
+                    )
+                }
+                "NE" -&gt; {
+                    bounds = GeoRectBounds(
+                        southWest = bounds.southWest,
+                        northEast = newPosition as GeoPointImpl
+                    )
+                }
+            }
+        }
+    ) {
+        // Bounds visualization
+        if (!bounds.isEmpty) {
+            val sw = bounds.southWest!!
+            val ne = bounds.northEast!!
+
+            // Bounds rectangle
+            Polygon(
+                points = listOf(
+                    sw,
+                    GeoPointImpl.fromLatLong(sw.latitude, ne.longitude),
+                    ne,
+                    GeoPointImpl.fromLatLong(ne.latitude, sw.longitude),
+                    sw
+                ),
+                strokeColor = Color.Red,
+                fillColor = Color.Red.copy(alpha = 0.2f)
+            )
+
+            // Corner markers
+            Marker(
+                position = sw,
+                icon = DefaultIcon(
+                    fillColor = Color.Green,
+                    label = "SW"
+                ),
+                draggable = true,
+                extra = "SW"
+            )
+
+            Marker(
+                position = ne,
+                icon = DefaultIcon(
+                    fillColor = Color.Red,
+                    label = "NE"
+                ),
+                draggable = true,
+                extra = "NE"
+            )
+        }
+    }
+}
+</code></pre>
+<h2 id="special-handling"><a class="header" href="#special-handling">Special Handling</a></h2>
+<h3 id="international-date-line"><a class="header" href="#international-date-line">International Date Line</a></h3>
+<p><code>GeoRectBounds</code> handles rectangles that cross the International Date Line (longitude ±180°):</p>
+<pre><code class="language-kotlin">// Bounds crossing the date line
+val pacificBounds = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(20.0, 170.0),  // West of date line
+    northEast = GeoPointImpl.fromLatLong(40.0, -170.0)  // East of date line
+)
+
+val pointInPacific = GeoPointImpl.fromLatLong(30.0, 175.0)
+val containsPoint = pacificBounds.contains(pointInPacific) // true
+</code></pre>
+<h3 id="empty-bounds-handling"><a class="header" href="#empty-bounds-handling">Empty Bounds Handling</a></h3>
+<pre><code class="language-kotlin">val emptyBounds = GeoRectBounds()
+
+println(emptyBounds.isEmpty) // true
+println(emptyBounds.center) // null
+println(emptyBounds.toSpan()) // null
+
+// Extending empty bounds
+emptyBounds.extend(GeoPointImpl.fromLatLong(37.7749, -122.4194))
+println(emptyBounds.isEmpty) // false
+</code></pre>
+<h2 id="utility-methods"><a class="header" href="#utility-methods">Utility Methods</a></h2>
+<h3 id="string-representation"><a class="header" href="#string-representation">String Representation</a></h3>
+<pre><code class="language-kotlin">// For debugging
+val bounds = GeoRectBounds(
+    southWest = GeoPointImpl.fromLatLong(37.7649, -122.4294),
+    northEast = GeoPointImpl.fromLatLong(37.7849, -122.4094)
+)
+
+println(bounds.toString())
+// Output: ((37.7649, -122.4294), (37.7849, -122.4094))
+</code></pre>
+<h3 id="url-value"><a class="header" href="#url-value">URL Value</a></h3>
+<pre><code class="language-kotlin">fun toUrlValue(precision: Int = 6): String
+
+// Usage for API calls
+val urlString = bounds.toUrlValue() // "37.764900,-122.429400,37.784900,-122.409400"
+val preciseString = bounds.toUrlValue(precision = 8)
+</code></pre>
+<h3 id="equality-comparison"><a class="header" href="#equality-comparison">Equality Comparison</a></h3>
+<pre><code class="language-kotlin">fun equalsTo(other: GeoRectBounds): Boolean
+
+// Usage
+val bounds1 = GeoRectBounds(/* ... */)
+val bounds2 = GeoRectBounds(/* ... */)
+
+val areEqual = bounds1.equalsTo(bounds2)
+</code></pre>
+<h2 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h2>
+<ol>
+<li><strong>Coordinate Order</strong>: Always use southwest (bottom-left) and northeast (top-right) for consistency</li>
+<li><strong>Empty Bounds</strong>: Check <code>isEmpty</code> before using bounds in calculations</li>
+<li><strong>Date Line Crossing</strong>: The class handles international date line crossing automatically</li>
+<li><strong>Dynamic Construction</strong>: Use <code>extend()</code> to build bounds from a collection of points</li>
+<li><strong>Performance</strong>: Cache bounds calculations for frequently accessed regions</li>
+<li><strong>Validation</strong>: Ensure southwest is actually southwest of northeast</li>
+<li><strong>Precision</strong>: Use appropriate precision for URL values based on your use case</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../core/geopoint.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../core/mapcameraposition.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../core/geopoint.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../core/mapcameraposition.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
