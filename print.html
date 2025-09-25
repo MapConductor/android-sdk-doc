@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -25,26 +25,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -58,70 +73,51 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="installation.html">Installation and Versions</a></li><li class="chapter-item expanded affix "><a href="sdk-version-compatibility.html">SDK Version Compatibility</a></li><li class="chapter-item expanded affix "><a href="provider-compatibility.html">Provider Compatibility</a></li><li class="chapter-item expanded affix "><li class="part-title">SDK Setup</li><li class="chapter-item expanded "><a href="setup/google-maps.html"><strong aria-hidden="true">1.</strong> Google Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/mapbox.html"><strong aria-hidden="true">2.</strong> Mapbox Setup</a></li><li class="chapter-item expanded "><a href="setup/here-maps.html"><strong aria-hidden="true">3.</strong> HERE Maps Setup</a></li><li class="chapter-item expanded "><a href="setup/arcgis.html"><strong aria-hidden="true">4.</strong> ArcGIS Maps Setup</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Components</li><li class="chapter-item expanded "><a href="components/mapviewcomponent.html"><strong aria-hidden="true">5.</strong> MapViewComponent</a></li><li class="chapter-item expanded "><a href="components/marker.html"><strong aria-hidden="true">6.</strong> Marker</a></li><li class="chapter-item expanded "><a href="components/infobubble.html"><strong aria-hidden="true">7.</strong> InfoBubble</a></li><li class="chapter-item expanded "><a href="components/circle.html"><strong aria-hidden="true">8.</strong> Circle</a></li><li class="chapter-item expanded "><a href="components/polyline.html"><strong aria-hidden="true">9.</strong> Polyline</a></li><li class="chapter-item expanded "><a href="components/polygon.html"><strong aria-hidden="true">10.</strong> Polygon</a></li><li class="chapter-item expanded "><a href="components/groundimage.html"><strong aria-hidden="true">11.</strong> GroundImage</a></li><li class="chapter-item expanded affix "><li class="part-title">State Classes</li><li class="chapter-item expanded "><a href="components/mapviewstate.html"><strong aria-hidden="true">12.</strong> MapViewState</a></li><li class="chapter-item expanded "><a href="states/marker-state.html"><strong aria-hidden="true">13.</strong> MarkerState</a></li><li class="chapter-item expanded "><a href="states/circle-state.html"><strong aria-hidden="true">14.</strong> CircleState</a></li><li class="chapter-item expanded "><a href="states/polyline-state.html"><strong aria-hidden="true">15.</strong> PolylineState</a></li><li class="chapter-item expanded "><a href="states/polygon-state.html"><strong aria-hidden="true">16.</strong> PolygonState</a></li><li class="chapter-item expanded "><a href="states/groundimage-state.html"><strong aria-hidden="true">17.</strong> GroundImageState</a></li><li class="chapter-item expanded affix "><li class="part-title">Core Classes</li><li class="chapter-item expanded "><a href="core/geopoint.html"><strong aria-hidden="true">18.</strong> GeoPoint</a></li><li class="chapter-item expanded "><a href="core/georectbounds.html"><strong aria-hidden="true">19.</strong> GeoRectBounds</a></li><li class="chapter-item expanded "><a href="core/mapcameraposition.html"><strong aria-hidden="true">20.</strong> MapCameraPosition</a></li><li class="chapter-item expanded "><a href="core/spherical-utilities.html"><strong aria-hidden="true">21.</strong> Spherical Utilities</a></li><li class="chapter-item expanded "><a href="core/mapviewholder.html"><strong aria-hidden="true">22.</strong> MapViewHolder</a></li><li class="chapter-item expanded "><a href="core/zoom-levels.html"><strong aria-hidden="true">23.</strong> Zoom Levels</a></li><li class="chapter-item expanded "><a href="core/marker-icons.html"><strong aria-hidden="true">24.</strong> Marker Icons</a></li><li class="chapter-item expanded "><a href="core/marker-animation.html"><strong aria-hidden="true">25.</strong> Marker Animation</a></li><li class="chapter-item expanded affix "><li class="part-title">Experimental Modules</li><li class="chapter-item expanded "><a href="experimental/icons.html"><strong aria-hidden="true">26.</strong> Icons</a></li><li class="chapter-item expanded "><a href="experimental/marker-strategy.html"><strong aria-hidden="true">27.</strong> Marker Strategy</a></li><li class="chapter-item expanded "><a href="experimental/marker-native-strategy.html"><strong aria-hidden="true">28.</strong> Marker Native Strategy</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="examples/basic-usage.html"><strong aria-hidden="true">29.</strong> Basic Usage Examples</a></li><li class="chapter-item expanded "><a href="examples/advanced-usage.html"><strong aria-hidden="true">30.</strong> Advanced Examples</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="api/event-handlers.html"><strong aria-hidden="true">31.</strong> Event Handlers</a></li><li class="chapter-item expanded "><a href="api/initialization.html"><strong aria-hidden="true">32.</strong> Initialization</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -131,13 +127,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -154,7 +151,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -207,7 +209,7 @@
 <p>See the <a href="./installation.html">Installation and Versions</a> page for complete dependency information and version details.</p>
 <h3 id="2-sdk-specific-setup"><a class="header" href="#2-sdk-specific-setup">2. SDK-Specific Setup</a></h3>
 <blockquote>
-<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up each map SDK independently before using MapConductor's integration.</p>
+<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up each map SDK independently before using MapConductor’s integration.</p>
 </blockquote>
 <p>Each map provider requires its own SDK setup with API keys, permissions, and configuration:</p>
 <ul>
@@ -332,45 +334,51 @@ val arcgisState = ArcGISMapViewStateImpl()
 <li><strong>Patch version</strong> increments for:
 <ul>
 <li>Minor bug fixes and improvements</li>
-<li>Small additions that don't break existing APIs</li>
+<li>Small additions that don’t break existing APIs</li>
 </ul>
 </li>
 </ul>
 <h2 id="core-modules"><a class="header" href="#core-modules">Core Modules</a></h2>
 <h3 id="required-modules"><a class="header" href="#required-modules">Required Modules</a></h3>
-<h4 id="mapconductor-core"><a class="header" href="#mapconductor-core">mapconductor-core</a></h4>
+<h4 id="mapconductor-bom"><a class="header" href="#mapconductor-bom">mapconductor-bom</a></h4>
+<p>The bom module containing version information.</p>
+<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-bom:1.0.0"
+</code></pre>
+<p><strong>Required for</strong>: All MapConductor usage
+<strong>Size</strong>: ~XXX KB</p>
+<h4 id="core"><a class="header" href="#core">core</a></h4>
 <p>The core module containing shared functionality and base classes.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-core:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:core"
 </code></pre>
 <p><strong>Required for</strong>: All MapConductor usage
 <strong>Dependencies</strong>: Jetpack Compose, Kotlin Coroutines
 <strong>Size</strong>: ~XXX KB</p>
 <h3 id="map-provider-modules"><a class="header" href="#map-provider-modules">Map Provider Modules</a></h3>
 <p>Choose one or more map provider modules based on your needs:</p>
-<h4 id="mapconductor-for-googlemaps"><a class="header" href="#mapconductor-for-googlemaps">mapconductor-for-googlemaps</a></h4>
+<h4 id="for-googlemaps"><a class="header" href="#for-googlemaps">for-googlemaps</a></h4>
 <p>Google Maps integration module.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:for-googlemaps"
 </code></pre>
 <p><strong>Provides</strong>: GoogleMapsView, GoogleMapViewStateImpl
 <strong>Requires</strong>: Google Maps SDK setup
 <strong>Size</strong>: ~XXX KB</p>
-<h4 id="mapconductor-for-mapbox"><a class="header" href="#mapconductor-for-mapbox">mapconductor-for-mapbox</a></h4>
+<h4 id="for-mapbox"><a class="header" href="#for-mapbox">for-mapbox</a></h4>
 <p>Mapbox integration module.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:for-mapbox"
 </code></pre>
 <p><strong>Provides</strong>: MapboxMapView, MapboxViewStateImpl
 <strong>Requires</strong>: Mapbox SDK setup
 <strong>Size</strong>: ~XXX KB</p>
-<h4 id="mapconductor-for-here"><a class="header" href="#mapconductor-for-here">mapconductor-for-here</a></h4>
+<h4 id="for-here"><a class="header" href="#for-here">for-here</a></h4>
 <p>HERE Maps integration module.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-here:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:for-here"
 </code></pre>
 <p><strong>Provides</strong>: HereMapView, HereViewStateImpl
 <strong>Requires</strong>: HERE SDK setup
 <strong>Size</strong>: ~XXX KB</p>
-<h4 id="mapconductor-for-arcgis"><a class="header" href="#mapconductor-for-arcgis">mapconductor-for-arcgis</a></h4>
+<h4 id="for-arcgis"><a class="header" href="#for-arcgis">for-arcgis</a></h4>
 <p>ArcGIS integration module.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:for-arcgis"
 </code></pre>
 <p><strong>Provides</strong>: ArcGISMapView, ArcGISMapViewStateImpl
 <strong>Requires</strong>: ArcGIS SDK setup
@@ -379,23 +387,23 @@ val arcgisState = ArcGISMapViewStateImpl()
 <blockquote>
 <p><strong>⚠️ Experimental</strong>: These modules are experimental and may change significantly in future versions.</p>
 </blockquote>
-<h3 id="mapconductor-icons"><a class="header" href="#mapconductor-icons">mapconductor-icons</a></h3>
+<h3 id="icons"><a class="header" href="#icons">icons</a></h3>
 <p>Custom marker icons with programmatic styling.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-icons:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:icons"
 </code></pre>
 <p><strong>Provides</strong>: CircleIcon, FlagIcon
 <strong>Stability</strong>: Experimental
 <strong>Size</strong>: ~XXX KB</p>
-<h3 id="mapconductor-marker-strategy"><a class="header" href="#mapconductor-marker-strategy">mapconductor-marker-strategy</a></h3>
+<h3 id="marker-strategy"><a class="header" href="#marker-strategy">marker-strategy</a></h3>
 <p>Advanced marker rendering strategies for performance optimization.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-marker-strategy:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:marker-strategy"
 </code></pre>
 <p><strong>Provides</strong>: DefaultMarkerRenderingStrategy, SpatialMarkerRenderingStrategy
 <strong>Stability</strong>: Experimental
 <strong>Size</strong>: ~XXX KB</p>
-<h3 id="mapconductor-marker-native-strategy"><a class="header" href="#mapconductor-marker-native-strategy">mapconductor-marker-native-strategy</a></h3>
+<h3 id="marker-native-strategy"><a class="header" href="#marker-native-strategy">marker-native-strategy</a></h3>
 <p>High-performance native C++ marker management.</p>
-<pre><code class="language-kotlin">implementation "com.mapconductor:mapconductor-marker-native-strategy:1.0.0"
+<pre><code class="language-kotlin">implementation "com.mapconductor:marker-native-strategy"
 </code></pre>
 <p><strong>Provides</strong>: NativeMarkerManager, SimpleNativeParallelStrategy
 <strong>Requires</strong>: Native library support (arm64-v8a, armeabi-v7a, x86, x86_64)
@@ -404,52 +412,59 @@ val arcgisState = ArcGISMapViewStateImpl()
 <h2 id="complete-installation-examples"><a class="header" href="#complete-installation-examples">Complete Installation Examples</a></h2>
 <h3 id="basic-installation-single-provider"><a class="header" href="#basic-installation-single-provider">Basic Installation (Single Provider)</a></h3>
 <pre><code class="language-kotlin">dependencies {
+    // Bom module (required)
+    implementation "com.mapconductor:mapconductor-bom:1.0.0"
     // Core module (required)
-    implementation "com.mapconductor:mapconductor-core:1.0.0"
+    implementation "com.mapconductor:core"
 
     // Choose one map provider
-    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
+    implementation "com.mapconductor:for-googlemaps"
 }
 </code></pre>
 <h3 id="multi-provider-installation"><a class="header" href="#multi-provider-installation">Multi-Provider Installation</a></h3>
 <pre><code class="language-kotlin">dependencies {
+    // Bom module (required)
+    implementation "com.mapconductor:mapconductor-bom:1.0.0"
     // Core module (required)
-    implementation "com.mapconductor:mapconductor-core:1.0.0"
+    implementation "com.mapconductor:core"
 
     // Multiple map providers
-    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-here:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+    implementation "com.mapconductor:for-googlemaps"
+    implementation "com.mapconductor:for-mapbox"
+    implementation "com.mapconductor:for-here"
+    implementation "com.mapconductor:for-arcgis"
 }
 </code></pre>
 <h3 id="full-installation-all-modules"><a class="header" href="#full-installation-all-modules">Full Installation (All Modules)</a></h3>
 <pre><code class="language-kotlin">dependencies {
-    // Core module
-    implementation "com.mapconductor:mapconductor-core:1.0.0"
+    // Bom module (required)
+    implementation "com.mapconductor:mapconductor-bom:1.0.0"
+    // Core module (required)
+    implementation "com.mapconductor:core"
 
     // All map providers
-    implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-mapbox:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-here:1.0.0"
-    implementation "com.mapconductor:mapconductor-for-arcgis:1.0.0"
+    implementation "com.mapconductor:for-googlemaps"
+    implementation "com.mapconductor:for-mapbox"
+    implementation "com.mapconductor:for-here"
+    implementation "com.mapconductor:for-arcgis"
 
     // Experimental modules (optional)
-    implementation "com.mapconductor:mapconductor-icons:1.0.0"
-    implementation "com.mapconductor:mapconductor-marker-strategy:1.0.0"
-    implementation "com.mapconductor:mapconductor-marker-native-strategy:1.0.0"
+    implementation "com.mapconductor:icons"
+    implementation "com.mapconductor:marker-strategy"
+    implementation "com.mapconductor:marker-native-strategy"
 }
 </code></pre>
 <h2 id="module-dependencies"><a class="header" href="#module-dependencies">Module Dependencies</a></h2>
 <h3 id="dependency-graph"><a class="header" href="#dependency-graph">Dependency Graph</a></h3>
-<pre><code>mapconductor-core (base)
-├── mapconductor-for-googlemaps
-├── mapconductor-for-mapbox
-├── mapconductor-for-here
-├── mapconductor-for-arcgis
-├── mapconductor-icons
-├── mapconductor-marker-strategy
-└── mapconductor-marker-native-strategy
+<pre><code>mapconductor-bom (base)
+core (base)
+├── googlemaps
+├── for-mapbox
+├── for-here
+├── for-arcgis
+├── icons
+├── marker-strategy
+└── marker-native-strategy
 </code></pre>
 <h3 id="external-dependencies"><a class="header" href="#external-dependencies">External Dependencies</a></h3>
 <p>Each module requires different external dependencies:</p>
@@ -556,20 +571,11 @@ val arcgisState = ArcGISMapViewStateImpl()
 def mapconductor_version = "1.1.0"  // New version
 
 dependencies {
-    implementation "com.mapconductor:mapconductor-core:$mapconductor_version"
-    implementation "com.mapconductor:mapconductor-for-googlemaps:$mapconductor_version"
+    implementation "com.mapconductor:mapconductor-bom:$mapconductor_version"
+    implementation "com.mapconductor:core"
+    implementation "com.mapconductor:for-googlemaps"
     // ... other modules
 }
-</code></pre>
-<h3 id="version-compatibility-1"><a class="header" href="#version-compatibility-1">Version Compatibility</a></h3>
-<p><strong>Important</strong>: Always use the same version for all MapConductor modules to ensure compatibility:</p>
-<pre><code class="language-kotlin">// ✅ Good: All modules use same version
-implementation "com.mapconductor:mapconductor-core:1.0.0"
-implementation "com.mapconductor:mapconductor-for-googlemaps:1.0.0"
-
-// ❌ Bad: Mixed versions may cause issues
-implementation "com.mapconductor:mapconductor-core:1.0.0"
-implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 </code></pre>
 <h2 id="release-notes"><a class="header" href="#release-notes">Release Notes</a></h2>
 <h3 id="version-100-current"><a class="header" href="#version-100-current">Version 1.0.0 (Current)</a></h3>
@@ -610,14 +616,15 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <h2 id="version-matrix"><a class="header" href="#version-matrix">Version Matrix</a></h2>
 <h3 id="mapconductor-100"><a class="header" href="#mapconductor-100">MapConductor 1.0.0</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>MapConductor Module</th><th>Version</th><th>Underlying SDK</th><th>SDK Version</th><th>Notes</th></tr></thead><tbody>
-<tr><td>mapconductor-core</td><td>1.0.0</td><td>-</td><td>-</td><td>Core abstractions and utilities</td></tr>
-<tr><td>mapconductor-for-googlemaps</td><td>1.0.0</td><td>Google Play Services Maps</td><td>19.2.0</td><td>Stable, widely supported</td></tr>
-<tr><td>mapconductor-for-mapbox</td><td>1.0.0</td><td>Mapbox Maps Android SDK</td><td>11.14.3</td><td>Uses NDK27 variant</td></tr>
-<tr><td>mapconductor-for-here</td><td>1.0.0</td><td>HERE SDK Explore</td><td>4.23.2.0.210004</td><td>Local AAR dependency</td></tr>
-<tr><td>mapconductor-for-arcgis</td><td>1.0.0</td><td>ArcGIS Maps SDK for Kotlin</td><td>200.7.0</td><td>Includes Compose toolkit</td></tr>
-<tr><td>mapconductor-icons</td><td>1.0.0</td><td>-</td><td>-</td><td>Icon components</td></tr>
-<tr><td>mapconductor-marker-strategy</td><td>1.0.0</td><td>-</td><td>-</td><td>Marker rendering strategies</td></tr>
-<tr><td>mapconductor-marker-native-strategy</td><td>1.0.0</td><td>-</td><td>-</td><td>Native performance optimization</td></tr>
+<tr><td>mapconductor-core</td><td>1.0.0</td><td>-</td><td>-</td><td>Versioning dependency modules</td></tr>
+<tr><td>core</td><td>1.0.0</td><td>-</td><td>-</td><td>Core abstractions and utilities</td></tr>
+<tr><td>for-googlemaps</td><td>1.0.0</td><td>Google Play Services Maps</td><td>19.2.0</td><td>Stable, widely supported</td></tr>
+<tr><td>for-mapbox</td><td>1.0.0</td><td>Mapbox Maps Android SDK</td><td>11.14.3</td><td>Uses NDK27 variant</td></tr>
+<tr><td>for-here</td><td>1.0.0</td><td>HERE SDK Explore</td><td>4.23.2.0.210004</td><td>Local AAR dependency</td></tr>
+<tr><td>for-arcgis</td><td>1.0.0</td><td>ArcGIS Maps SDK for Kotlin</td><td>200.7.0</td><td>Includes Compose toolkit</td></tr>
+<tr><td>icons</td><td>1.0.0</td><td>-</td><td>-</td><td>Icon components</td></tr>
+<tr><td>marker-strategy</td><td>1.0.0</td><td>-</td><td>-</td><td>Marker rendering strategies</td></tr>
+<tr><td>marker-native-strategy</td><td>1.0.0</td><td>-</td><td>-</td><td>Native performance optimization</td></tr>
 </tbody></table>
 </div>
 <h2 id="sdk-compatibility-notes"><a class="header" href="#sdk-compatibility-notes">SDK Compatibility Notes</a></h2>
@@ -706,7 +713,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <li><strong>Check compatibility</strong> with your MapConductor version</li>
 <li><strong>Test thoroughly</strong> on your target devices</li>
 <li><strong>Update API keys</strong> if required by the map provider</li>
-<li><strong>Review breaking changes</strong> in the map provider's changelog</li>
+<li><strong>Review breaking changes</strong> in the map provider’s changelog</li>
 </ol>
 <h3 id="mapconductor-version-updates"><a class="header" href="#mapconductor-version-updates">MapConductor Version Updates</a></h3>
 <p>When updating MapConductor versions:</p>
@@ -714,7 +721,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <li><strong>Review the changelog</strong> for breaking changes</li>
 <li><strong>Update all MapConductor modules</strong> to the same version</li>
 <li><strong>Test provider-specific functionality</strong> thoroughly</li>
-<li><strong>Update dependencies</strong> in your app's build.gradle</li>
+<li><strong>Update dependencies</strong> in your app’s build.gradle</li>
 </ol>
 <h2 id="support-and-compatibility-1"><a class="header" href="#support-and-compatibility-1">Support and Compatibility</a></h2>
 <h3 id="supported-configurations"><a class="header" href="#supported-configurations">Supported Configurations</a></h3>
@@ -729,7 +736,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <ol>
 <li>Check this compatibility matrix</li>
 <li>Verify your SDK versions match the supported versions</li>
-<li>Check the map provider's documentation for known issues</li>
+<li>Check the map provider’s documentation for known issues</li>
 <li>Report issues with detailed version information</li>
 </ol>
 <hr />
@@ -802,7 +809,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <p><strong>Google Maps</strong>: Native <code>GroundOverlay</code> API provides direct support for image overlays with geographic bounds.</p>
 <p><strong>Mapbox</strong>: No direct equivalent to ground overlays in the Mapbox Maps SDK. While custom layers could potentially implement similar functionality, it would require significant custom implementation.</p>
 <p><strong>HERE Maps</strong>: The HERE SDK does not provide built-in ground overlay functionality. Custom implementation would be complex and potentially unstable.</p>
-<p><strong>ArcGIS</strong>: While ArcGIS supports raster layers, the mobile SDK doesn't provide simple ground overlay functionality equivalent to Google Maps.</p>
+<p><strong>ArcGIS</strong>: While ArcGIS supports raster layers, the mobile SDK doesn’t provide simple ground overlay functionality equivalent to Google Maps.</p>
 <h2 id="usage-considerations"><a class="header" href="#usage-considerations">Usage Considerations</a></h2>
 <h3 id="provider-selection"><a class="header" href="#provider-selection">Provider Selection</a></h3>
 <p>When choosing a map provider, consider these compatibility factors:</p>
@@ -810,7 +817,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <ul>
 <li>You need GroundImage overlays</li>
 <li>You want the most complete feature set</li>
-<li>You're targeting primarily Android users</li>
+<li>You’re targeting primarily Android users</li>
 </ul>
 <h4 id="choose-mapbox-if"><a class="header" href="#choose-mapbox-if">Choose Mapbox if:</a></h4>
 <ul>
@@ -831,7 +838,7 @@ implementation "com.mapconductor:mapconductor-for-googlemaps:0.9.0"
 <li>You need extensive spatial analysis</li>
 </ul>
 <h3 id="handling-unsupported-features"><a class="header" href="#handling-unsupported-features">Handling Unsupported Features</a></h3>
-<p>When using components that aren't supported on all providers:</p>
+<p>When using components that aren’t supported on all providers:</p>
 <h4 id="runtime-detection"><a class="header" href="#runtime-detection">Runtime Detection</a></h4>
 <pre><code class="language-kotlin">@Composable
 fun CompatibilityAwareMap() {
@@ -1063,7 +1070,7 @@ class ProviderCompatibilityTest(
 <div style="break-before: page; page-break-before: always;"></div><h1 id="google-maps-setup"><a class="header" href="#google-maps-setup">Google Maps Setup</a></h1>
 <p>This section covers the setup process for Google Maps SDK integration with MapConductor.</p>
 <blockquote>
-<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the Google Maps SDK independently before using MapConductor's Google Maps integration.</p>
+<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the Google Maps SDK independently before using MapConductor’s Google Maps integration.</p>
 </blockquote>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <ul>
@@ -1078,16 +1085,16 @@ class ProviderCompatibilityTest(
 <li>Create a new project or select an existing one</li>
 <li>Enable the <strong>Maps SDK for Android</strong> API</li>
 <li>Go to <strong>Credentials</strong> and create an API key</li>
-<li>Restrict the API key to your app's package name and SHA-1 certificate fingerprint</li>
+<li>Restrict the API key to your app’s package name and SHA-1 certificate fingerprint</li>
 </ol>
 <h3 id="2-gradle-configuration"><a class="header" href="#2-gradle-configuration">2. Gradle Configuration</a></h3>
-<p>First, add the Secrets Gradle Plugin to your project's root <code>build.gradle.kts</code>:</p>
+<p>First, add the Secrets Gradle Plugin to your project’s root <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// Root build.gradle.kts
 plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
 }
 </code></pre>
-<p>Then, add the dependencies and apply the plugin in your app's <code>build.gradle.kts</code>:</p>
+<p>Then, add the dependencies and apply the plugin in your app’s <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// App build.gradle.kts
 plugins {
     // ... other plugins
@@ -1121,7 +1128,7 @@ dependencies {
 &lt;/application&gt;
 </code></pre>
 <h3 id="4-api-key-configuration"><a class="header" href="#4-api-key-configuration">4. API Key Configuration</a></h3>
-<p>Add your actual API key to your <code>secrets.properties</code> file (create if it doesn't exist):</p>
+<p>Add your actual API key to your <code>secrets.properties</code> file (create if it doesn’t exist):</p>
 <pre><code class="language-properties"># secrets.properties
 GOOGLE_MAPS_API_KEY=your_actual_google_maps_api_key_here
 </code></pre>
@@ -1132,7 +1139,7 @@ GOOGLE_MAPS_API_KEY=your_actual_google_maps_api_key_here
 <li>For CI/CD builds, you can set environment variables or use other secure methods to provide these values.</li>
 </ul>
 <h3 id="5-proguard-configuration-if-applicable"><a class="header" href="#5-proguard-configuration-if-applicable">5. ProGuard Configuration (if applicable)</a></h3>
-<p>If you're using ProGuard/R8, add these rules to your <code>proguard-rules.pro</code>:</p>
+<p>If you’re using ProGuard/R8, add these rules to your <code>proguard-rules.pro</code>:</p>
 <pre><code class="language-proguard"># Google Play Services
 -keep class com.google.android.gms.maps.** { *; }
 -keep interface com.google.android.gms.maps.** { *; }
@@ -1161,7 +1168,7 @@ fun TestGoogleMaps() {
 <ul>
 <li>Verify API key is correct in <code>secrets.properties</code></li>
 <li>Check that Maps SDK for Android is enabled in Google Cloud Console</li>
-<li>Ensure API key restrictions match your app's package name and SHA-1</li>
+<li>Ensure API key restrictions match your app’s package name and SHA-1</li>
 </ul>
 <p><strong>API key errors in logs</strong></p>
 <ul>
@@ -1176,11 +1183,11 @@ fun TestGoogleMaps() {
 <li>Check that <code>secrets.properties</code> is not in <code>.gitignore</code> for local builds</li>
 </ul>
 <h2 id="next-steps-1"><a class="header" href="#next-steps-1">Next Steps</a></h2>
-<p>Once Google Maps SDK is properly configured, you can use MapConductor's <code>GoogleMapsView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
+<p>Once Google Maps SDK is properly configured, you can use MapConductor’s <code>GoogleMapsView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mapbox-setup"><a class="header" href="#mapbox-setup">Mapbox Setup</a></h1>
 <p>This section covers the setup process for Mapbox Maps SDK integration with MapConductor.</p>
 <blockquote>
-<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the Mapbox Maps SDK independently before using MapConductor's Mapbox integration.</p>
+<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the Mapbox Maps SDK independently before using MapConductor’s Mapbox integration.</p>
 </blockquote>
 <h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
 <ul>
@@ -1198,7 +1205,7 @@ fun TestGoogleMaps() {
 <li>Copy the access token for use in your app</li>
 </ol>
 <h3 id="2-gradle-configuration-1"><a class="header" href="#2-gradle-configuration-1">2. Gradle Configuration</a></h3>
-<p>First, add the Mapbox repository to your project's <code>settings.gradle.kts</code>:</p>
+<p>First, add the Mapbox repository to your project’s <code>settings.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// settings.gradle.kts
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -1213,13 +1220,13 @@ dependencyResolutionManagement {
     }
 }
 </code></pre>
-<p>Then, add the Secrets Gradle Plugin to your project's root <code>build.gradle.kts</code>:</p>
+<p>Then, add the Secrets Gradle Plugin to your project’s root <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// Root build.gradle.kts
 plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
 }
 </code></pre>
-<p>Then, add the dependencies and apply the plugin in your app's <code>build.gradle.kts</code>:</p>
+<p>Then, add the dependencies and apply the plugin in your app’s <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// App build.gradle.kts
 plugins {
     // ... other plugins
@@ -1311,11 +1318,11 @@ fun TestMapbox() {
 <li>Check that <code>secrets.properties</code> file exists and contains the token</li>
 </ul>
 <h2 id="next-steps-2"><a class="header" href="#next-steps-2">Next Steps</a></h2>
-<p>Once Mapbox Maps SDK is properly configured, you can use MapConductor's <code>MapboxMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
+<p>Once Mapbox Maps SDK is properly configured, you can use MapConductor’s <code>MapboxMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="here-maps-setup"><a class="header" href="#here-maps-setup">HERE Maps Setup</a></h1>
 <p>This section covers the setup process for HERE SDK integration with MapConductor.</p>
 <blockquote>
-<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the HERE SDK independently before using MapConductor's HERE Maps integration.</p>
+<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the HERE SDK independently before using MapConductor’s HERE Maps integration.</p>
 </blockquote>
 <h2 id="prerequisites-2"><a class="header" href="#prerequisites-2">Prerequisites</a></h2>
 <ul>
@@ -1335,20 +1342,20 @@ fun TestMapbox() {
 <h3 id="2-here-sdk-installation"><a class="header" href="#2-here-sdk-installation">2. HERE SDK Installation</a></h3>
 <ol>
 <li>Download HERE SDK Explore Android version <strong>4.23.2.0.210004</strong> (as used by MapConductor 1.0.0)</li>
-<li>Place the AAR file in your project's <code>libs/</code> directory:
+<li>Place the AAR file in your project’s <code>libs/</code> directory:
 <pre><code>libs/heresdk-explore-android-4.23.2.0.210004.aar
 </code></pre>
 </li>
 <li>The AAR file must match the exact version specified in <code>gradle.properties</code></li>
 </ol>
 <h3 id="3-gradle-configuration"><a class="header" href="#3-gradle-configuration">3. Gradle Configuration</a></h3>
-<p>First, add the Secrets Gradle Plugin to your project's root <code>build.gradle.kts</code>:</p>
+<p>First, add the Secrets Gradle Plugin to your project’s root <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// Root build.gradle.kts
 plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
 }
 </code></pre>
-<p>Then, add the dependencies and apply the plugin in your app's <code>build.gradle.kts</code>:</p>
+<p>Then, add the dependencies and apply the plugin in your app’s <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// App build.gradle.kts
 plugins {
     // ... other plugins
@@ -1436,11 +1443,11 @@ fun TestHERE() {
 <li>Ensure <code>gradle.properties</code> contains correct <code>hereSdkAarName</code> value</li>
 </ul>
 <h2 id="next-steps-3"><a class="header" href="#next-steps-3">Next Steps</a></h2>
-<p>Once HERE SDK is properly configured, you can use MapConductor's <code>HereMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
+<p>Once HERE SDK is properly configured, you can use MapConductor’s <code>HereMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="arcgis-maps-setup"><a class="header" href="#arcgis-maps-setup">ArcGIS Maps Setup</a></h1>
 <p>This section covers the setup process for ArcGIS Maps SDK integration with MapConductor.</p>
 <blockquote>
-<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the ArcGIS Maps SDK independently before using MapConductor's ArcGIS integration.</p>
+<p><strong>Important</strong>: MapConductor provides a unified API layer on top of existing map SDKs. You must set up the ArcGIS Maps SDK independently before using MapConductor’s ArcGIS integration.</p>
 </blockquote>
 <h2 id="prerequisites-3"><a class="header" href="#prerequisites-3">Prerequisites</a></h2>
 <ul>
@@ -1458,7 +1465,7 @@ fun TestHERE() {
 <li>Note the API key for use in your app</li>
 </ol>
 <h3 id="2-gradle-configuration-2"><a class="header" href="#2-gradle-configuration-2">2. Gradle Configuration</a></h3>
-<p>First, add the Esri repository to your project's <code>settings.gradle.kts</code>:</p>
+<p>First, add the Esri repository to your project’s <code>settings.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// settings.gradle.kts
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -1473,13 +1480,13 @@ dependencyResolutionManagement {
     }
 }
 </code></pre>
-<p>Then, add the Secrets Gradle Plugin to your project's root <code>build.gradle.kts</code>:</p>
+<p>Then, add the Secrets Gradle Plugin to your project’s root <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// Root build.gradle.kts
 plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
 }
 </code></pre>
-<p>Then, add the dependencies and apply the plugin in your app's <code>build.gradle.kts</code>:</p>
+<p>Then, add the dependencies and apply the plugin in your app’s <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">// App build.gradle.kts
 plugins {
     // ... other plugins
@@ -1575,7 +1582,7 @@ fun TestArcGIS() {
 <li>Ensure <code>secrets.properties</code> contains the API key</li>
 </ul>
 <h2 id="next-steps-4"><a class="header" href="#next-steps-4">Next Steps</a></h2>
-<p>Once ArcGIS Maps SDK is properly configured, you can use MapConductor's <code>ArcGISMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
+<p>Once ArcGIS Maps SDK is properly configured, you can use MapConductor’s <code>ArcGISMapView</code> component as described in the <a href="setup/../components/mapviewcomponent.html">MapViewComponent</a> documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mapviewcomponent-1"><a class="header" href="#mapviewcomponent-1">MapViewComponent</a></h1>
 <p>MapConductor provides provider-specific map view components that serve as the foundation for displaying maps in your application. Each map provider has its own implementation while maintaining a consistent API interface.</p>
 <h2 id="provider-specific-components"><a class="header" href="#provider-specific-components">Provider-Specific Components</a></h2>
@@ -1857,7 +1864,7 @@ fun AdvancedMapExample() {
 <p>Each provider may have different requirements for API keys, permissions, and platform setup. Refer to the initialization documentation for provider-specific setup instructions.</p>
 <h2 id="best-practices-1"><a class="header" href="#best-practices-1">Best Practices</a></h2>
 <ol>
-<li><strong>Choose the Right Provider</strong>: Select based on your app's specific needs (styling, performance, features)</li>
+<li><strong>Choose the Right Provider</strong>: Select based on your app’s specific needs (styling, performance, features)</li>
 <li><strong>Consistent State Management</strong>: Use the same state patterns regardless of provider</li>
 <li><strong>Reusable Content</strong>: Create provider-agnostic composable content when possible</li>
 <li><strong>Event Handling</strong>: Implement comprehensive event handling for better user experience</li>
@@ -2144,7 +2151,7 @@ MapView(
 <div style="break-before: page; page-break-before: always;"></div><h1 id="infobubble"><a class="header" href="#infobubble">InfoBubble</a></h1>
 <p>InfoBubble is a component that displays custom content in a speech bubble attached to a marker on the map. It provides a way to show detailed information about markers without cluttering the map interface.</p>
 <h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
-<p>InfoBubble creates a floating overlay that appears above a specific marker, with customizable styling and content. The bubble automatically positions itself relative to the marker and follows the marker's position when the map is panned or zoomed.</p>
+<p>InfoBubble creates a floating overlay that appears above a specific marker, with customizable styling and content. The bubble automatically positions itself relative to the marker and follows the marker’s position when the map is panned or zoomed.</p>
 <h2 id="composable-function"><a class="header" href="#composable-function">Composable Function</a></h2>
 <pre><code class="language-kotlin">@Composable
 fun MapViewScope.InfoBubble(
@@ -2163,7 +2170,7 @@ fun MapViewScope.InfoBubble(
 <li><strong><code>bubbleColor</code></strong>: Background color of the bubble (default: White)</li>
 <li><strong><code>borderColor</code></strong>: Border color of the bubble (default: Black)</li>
 <li><strong><code>contentPadding</code></strong>: Internal padding around the content (default: 8dp)</li>
-<li><strong><code>cornerRadius</code></strong>: Radius of the bubble's rounded corners (default: 4dp)</li>
+<li><strong><code>cornerRadius</code></strong>: Radius of the bubble’s rounded corners (default: 4dp)</li>
 <li><strong><code>tailSize</code></strong>: Size of the speech bubble tail pointing to the marker (default: 8dp)</li>
 <li><strong><code>content</code></strong>: Composable content to display inside the bubble</li>
 </ul>
@@ -2502,7 +2509,7 @@ fun MultipleBubblesExample() {
 <h3 id="automatic-positioning"><a class="header" href="#automatic-positioning">Automatic Positioning</a></h3>
 <p>InfoBubble automatically positions itself above the associated marker:</p>
 <ul>
-<li>The bubble's tail points to the center of the marker</li>
+<li>The bubble’s tail points to the center of the marker</li>
 <li>The bubble adjusts its position to stay visible within the map viewport</li>
 <li>The bubble follows the marker when the map is panned or zoomed</li>
 </ul>
@@ -2737,7 +2744,7 @@ fun MapViewScope.Circle(state: CircleState)
 <ul>
 <li><strong><code>center</code></strong>: Geographic center point of the circle (<code>GeoPoint</code>)</li>
 <li><strong><code>radius</code></strong>: Radius in meters (<code>Double</code>)</li>
-<li><strong><code>strokeColor</code></strong>: Color of the circle's border (default: <code>Color.Red</code>)</li>
+<li><strong><code>strokeColor</code></strong>: Color of the circle’s border (default: <code>Color.Red</code>)</li>
 <li><strong><code>strokeWidth</code></strong>: Width of the border line (default: <code>2.dp</code>)</li>
 <li><strong><code>fillColor</code></strong>: Fill color of the circle interior (default: semi-transparent white)</li>
 <li><strong><code>extra</code></strong>: Additional data attached to the circle (<code>Serializable?</code>)</li>
@@ -2757,7 +2764,7 @@ MapView(state = mapViewState) {
 }
 </code></pre>
 <h3 id="interactive-circle-with-markers"><a class="header" href="#interactive-circle-with-markers">Interactive Circle with Markers</a></h3>
-<p>Based on the example app, here's how to create an interactive circle with draggable markers:</p>
+<p>Based on the example app, here’s how to create an interactive circle with draggable markers:</p>
 <pre><code class="language-kotlin">@Composable
 fun InteractiveCircleExample() {
     var centerPosition by remember {
@@ -3078,7 +3085,7 @@ fun MapViewScope.Polyline(state: PolylineState)
 <li><strong><code>id</code></strong>: Optional unique identifier for the polyline (<code>String?</code>)</li>
 <li><strong><code>strokeColor</code></strong>: Color of the line (default: <code>Color.Black</code>)</li>
 <li><strong><code>strokeWidth</code></strong>: Width of the line (default: <code>1.dp</code>)</li>
-<li><strong><code>geodesic</code></strong>: Whether to draw geodesic lines (following Earth's curvature, default: <code>false</code>)</li>
+<li><strong><code>geodesic</code></strong>: Whether to draw geodesic lines (following Earth’s curvature, default: <code>false</code>)</li>
 <li><strong><code>extra</code></strong>: Additional data attached to the polyline (<code>Serializable?</code>)</li>
 </ul>
 <h2 id="usage-examples-3"><a class="header" href="#usage-examples-3">Usage Examples</a></h2>
@@ -3770,7 +3777,7 @@ Polygon(
 <li><strong>Visual Clarity</strong>: Use appropriate colors and transparency for good visibility</li>
 <li><strong>Interactive Feedback</strong>: Provide visual feedback when polygons are clickable</li>
 <li><strong>Hole Handling</strong>: Use overlapping polygons with different colors to simulate holes</li>
-<li><strong>Geodesic Edges</strong>: Use geodesic edges for large polygons to account for Earth's curvature</li>
+<li><strong>Geodesic Edges</strong>: Use geodesic edges for large polygons to account for Earth’s curvature</li>
 <li><strong>State Management</strong>: Efficiently manage polygon vertex data and handle updates reactively</li>
 <li><strong>Validation</strong>: Validate polygon geometry to ensure it forms a valid shape</li>
 <li><strong>Error Handling</strong>: Handle edge cases like polygons with fewer than 3 vertices</li>
@@ -4342,7 +4349,7 @@ MapView(
 <li><strong>Resource Management</strong>: Allow the SDK to handle lifecycle management automatically</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="markerstate"><a class="header" href="#markerstate">MarkerState</a></h1>
-<p><code>MarkerState</code> manages the configuration and behavior of markers on the map. It provides reactive properties that automatically update the marker's appearance and position when modified.</p>
+<p><code>MarkerState</code> manages the configuration and behavior of markers on the map. It provides reactive properties that automatically update the marker’s appearance and position when modified.</p>
 <h2 id="constructor"><a class="header" href="#constructor">Constructor</a></h2>
 <pre><code class="language-kotlin">MarkerState(
     position: GeoPoint,
@@ -4719,7 +4726,7 @@ markerStates.remove(markerId)
 <ol>
 <li><strong>Use Meaningful IDs</strong>: Provide custom IDs for markers you need to reference later</li>
 <li><strong>Store Useful Data</strong>: Use the <code>extra</code> property to store data needed for event handling</li>
-<li><strong>Reactive Updates</strong>: Leverage Compose's reactive system - modify properties directly rather than recreating states</li>
+<li><strong>Reactive Updates</strong>: Leverage Compose’s reactive system - modify properties directly rather than recreating states</li>
 <li><strong>Performance</strong>: Use <code>copy()</code> when updating multiple properties simultaneously</li>
 <li><strong>Memory</strong>: Clean up marker states that are no longer needed</li>
 <li><strong>Consistency</strong>: Maintain consistent icon styling across similar marker types</li>
@@ -4875,7 +4882,7 @@ typealias OnCircleEventHandler = (CircleEvent) -&gt; Unit
 <ul>
 <li><strong><code>strokeColor: Color</code></strong>: Line color</li>
 <li><strong><code>strokeWidth: Dp</code></strong>: Line width</li>
-<li><strong><code>geodesic: Boolean</code></strong>: Whether to draw geodesic lines (following Earth's curvature)</li>
+<li><strong><code>geodesic: Boolean</code></strong>: Whether to draw geodesic lines (following Earth’s curvature)</li>
 </ul>
 <h2 id="methods-2"><a class="header" href="#methods-2">Methods</a></h2>
 <pre><code class="language-kotlin">fun copy(...): PolylineState // Create a modified copy
@@ -5543,7 +5550,7 @@ val pointEast = sf.offset(1000.0, 90.0)  // 1km east of SF
 </code></pre>
 <h2 id="interpolation"><a class="header" href="#interpolation">Interpolation</a></h2>
 <h3 id="spherical-interpolation"><a class="header" href="#spherical-interpolation">Spherical Interpolation</a></h3>
-<p>Considers Earth's curvature (recommended for geographic calculations):</p>
+<p>Considers Earth’s curvature (recommended for geographic calculations):</p>
 <pre><code class="language-kotlin">fun GeoPoint.interpolateTo(other: GeoPoint, fraction: Double): GeoPointImpl
 
 // Usage
@@ -5554,7 +5561,7 @@ val halfway = sf.interpolateTo(nyc, 0.5) // Midpoint considering Earth's curvatu
 val quarterWay = sf.interpolateTo(nyc, 0.25)
 </code></pre>
 <h3 id="linear-interpolation"><a class="header" href="#linear-interpolation">Linear Interpolation</a></h3>
-<p>Ignores Earth's curvature (faster but less accurate for long distances):</p>
+<p>Ignores Earth’s curvature (faster but less accurate for long distances):</p>
 <pre><code class="language-kotlin">fun GeoPoint.linearInterpolateTo(other: GeoPoint, fraction: Double): GeoPointImpl
 
 // Usage
@@ -5691,7 +5698,7 @@ val preciseString = point.toUrlValue(precision = 8) // More decimal places
 <ol>
 <li><strong>Use Factory Methods</strong>: Prefer <code>fromLatLong()</code> for clarity about parameter order</li>
 <li><strong>Validate Input</strong>: Check coordinates are within valid ranges when accepting user input</li>
-<li><strong>Consider Earth's Curvature</strong>: Use spherical interpolation for geographic accuracy</li>
+<li><strong>Consider Earth’s Curvature</strong>: Use spherical interpolation for geographic accuracy</li>
 <li><strong>Performance</strong>: Use linear interpolation for frequent calculations where precision is less critical</li>
 <li><strong>Altitude</strong>: Include altitude for 3D applications, use 0.0 for 2D mapping</li>
 <li><strong>Immutability</strong>: GeoPointImpl is immutable - create new instances for different coordinates</li>
@@ -6085,7 +6092,7 @@ val areEqual = bounds1.equalsTo(bounds2)
 <li><strong>Precision</strong>: Use appropriate precision for URL values based on your use case</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mapcameraposition"><a class="header" href="#mapcameraposition">MapCameraPosition</a></h1>
-<p><code>MapCameraPosition</code> represents the camera's viewing position, orientation, and visible area on the map. It defines where the camera is looking, how much of the map is visible, and the perspective from which the map is viewed.</p>
+<p><code>MapCameraPosition</code> represents the camera’s viewing position, orientation, and visible area on the map. It defines where the camera is looking, how much of the map is visible, and the perspective from which the map is viewed.</p>
 <h2 id="interface-and-implementation-1"><a class="header" href="#interface-and-implementation-1">Interface and Implementation</a></h2>
 <h3 id="mapcameraposition-interface"><a class="header" href="#mapcameraposition-interface">MapCameraPosition Interface</a></h3>
 <pre><code class="language-kotlin">interface MapCameraPosition {
@@ -6111,7 +6118,7 @@ val areEqual = bounds1.equalsTo(bounds2)
 <h2 id="properties-6"><a class="header" href="#properties-6">Properties</a></h2>
 <h3 id="camera-location"><a class="header" href="#camera-location">Camera Location</a></h3>
 <ul>
-<li><strong><code>position: GeoPoint</code></strong>: Geographic center point of the camera's view</li>
+<li><strong><code>position: GeoPoint</code></strong>: Geographic center point of the camera’s view</li>
 <li><strong><code>zoom: Double</code></strong>: Zoom level (approximately follows Google Maps scale)</li>
 <li><strong><code>bearing: Double</code></strong>: Compass direction in degrees (0 = North, 90 = East)</li>
 <li><strong><code>tilt: Double</code></strong>: Camera tilt angle in degrees (0 = top-down, 90 = horizontal)</li>
@@ -6268,13 +6275,13 @@ val paddedCamera = MapCameraPositionImpl(
 <p><strong><code>bounds: GeoRectBounds</code></strong>: The rectangular geographic bounds that encompass the entire visible area. This is the minimum bounding rectangle that contains all visible content.</p>
 </li>
 <li>
-<p><strong><code>nearLeft: GeoPoint?</code></strong>: The geographic coordinate of the bottom-left corner of the visible region. "Near" refers to the side closest to the camera position.</p>
+<p><strong><code>nearLeft: GeoPoint?</code></strong>: The geographic coordinate of the bottom-left corner of the visible region. “Near” refers to the side closest to the camera position.</p>
 </li>
 <li>
 <p><strong><code>nearRight: GeoPoint?</code></strong>: The geographic coordinate of the bottom-right corner of the visible region.</p>
 </li>
 <li>
-<p><strong><code>farLeft: GeoPoint?</code></strong>: The geographic coordinate of the top-left corner of the visible region. "Far" refers to the side furthest from the camera position.</p>
+<p><strong><code>farLeft: GeoPoint?</code></strong>: The geographic coordinate of the top-left corner of the visible region. “Far” refers to the side furthest from the camera position.</p>
 </li>
 <li>
 <p><strong><code>farRight: GeoPoint?</code></strong>: The geographic coordinate of the top-right corner of the visible region.</p>
@@ -6496,7 +6503,7 @@ val centerCamera = MapCameraPositionImpl(
 <div style="break-before: page; page-break-before: always;"></div><h1 id="spherical-utilities"><a class="header" href="#spherical-utilities">Spherical Utilities</a></h1>
 <p>The spherical utilities provide accurate geographic calculations using the spherical Earth model. These functions are essential for distance measurements, path calculations, and geographic computations.</p>
 <h2 id="overview-2"><a class="header" href="#overview-2">Overview</a></h2>
-<p>The <code>Spherical</code> object contains utility functions for calculating distances, headings, and positions on Earth's surface. It uses the spherical Earth model with Earth's radius based on the WGS84 ellipsoid.</p>
+<p>The <code>Spherical</code> object contains utility functions for calculating distances, headings, and positions on Earth’s surface. It uses the spherical Earth model with Earth’s radius based on the WGS84 ellipsoid.</p>
 <pre><code class="language-kotlin">import com.mapconductor.core.spherical.Spherical
 </code></pre>
 <h2 id="core-constants"><a class="header" href="#core-constants">Core Constants</a></h2>
@@ -6632,7 +6639,7 @@ fun AnimatedRoute() {
 <h3 id="linear-interpolation-1"><a class="header" href="#linear-interpolation-1">Linear Interpolation</a></h3>
 <pre><code class="language-kotlin">fun linearInterpolate(from: GeoPoint, to: GeoPoint, fraction: Double): GeoPointImpl
 </code></pre>
-<p>Fast linear interpolation without considering Earth's curvature:</p>
+<p>Fast linear interpolation without considering Earth’s curvature:</p>
 <pre><code class="language-kotlin">val start = GeoPointImpl.fromLatLong(37.7749, -122.4194)
 val end = GeoPointImpl.fromLatLong(37.7849, -122.4094)  // Short distance
 
@@ -6848,7 +6855,7 @@ fun GeofenceExample() {
 <li><strong>Precision</strong>: Results are accurate for most mapping applications but may have small errors for high-precision surveying</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mapviewholder"><a class="header" href="#mapviewholder">MapViewHolder</a></h1>
-<p><code>MapViewHolder</code> provides access to the native map SDK instances for advanced use cases where MapConductor's unified API doesn't cover specific provider functionality. While MapConductor provides a common interface, it doesn't completely wrap all native features, and MapViewHolder bridges this gap.</p>
+<p><code>MapViewHolder</code> provides access to the native map SDK instances for advanced use cases where MapConductor’s unified API doesn’t cover specific provider functionality. While MapConductor provides a common interface, it doesn’t completely wrap all native features, and MapViewHolder bridges this gap.</p>
 <h2 id="overview-3"><a class="header" href="#overview-3">Overview</a></h2>
 <p>MapConductor aims to provide a unified API across map providers, but complete feature parity is not always possible. MapViewHolder allows developers to access the underlying native map instances when they need provider-specific functionality.</p>
 <pre><code class="language-kotlin">interface MapViewHolder&lt;ActualMapViewType, ActualMapType&gt; {
@@ -6857,7 +6864,7 @@ fun GeofenceExample() {
 }
 </code></pre>
 <h2 id="accessing-mapviewholder"><a class="header" href="#accessing-mapviewholder">Accessing MapViewHolder</a></h2>
-<p>Each map provider's <code>MapViewState</code> implementation provides access to its specific <code>MapViewHolder</code>:</p>
+<p>Each map provider’s <code>MapViewState</code> implementation provides access to its specific <code>MapViewHolder</code>:</p>
 <pre><code class="language-kotlin">// Google Maps
 val googleMapState = GoogleMapViewStateImpl()
 val googleHolder: GoogleMapViewHolder? = googleMapState.getMapViewHolder()
@@ -7159,10 +7166,10 @@ fun SafeNativeAccess() {
 <li><strong>Initialization Check</strong>: Always check if <code>getMapViewHolder()</code> returns non-null before accessing native APIs</li>
 <li><strong>Lifecycle Awareness</strong>: Properly handle map lifecycle events when using native APIs</li>
 <li><strong>Error Handling</strong>: Wrap native API calls in try-catch blocks as provider APIs may throw exceptions</li>
-<li><strong>Documentation</strong>: Refer to each provider's official documentation for native API usage</li>
+<li><strong>Documentation</strong>: Refer to each provider’s official documentation for native API usage</li>
 <li><strong>Testing</strong>: Test thoroughly across all target map providers when using native APIs</li>
 <li><strong>Fallback</strong>: Provide fallback behavior when native features are unavailable</li>
-<li><strong>Version Compatibility</strong>: Ensure native API usage is compatible with the SDK versions you're targeting</li>
+<li><strong>Version Compatibility</strong>: Ensure native API usage is compatible with the SDK versions you’re targeting</li>
 </ol>
 <h2 id="limitations-and-considerations"><a class="header" href="#limitations-and-considerations">Limitations and Considerations</a></h2>
 <ol>
@@ -7170,9 +7177,9 @@ fun SafeNativeAccess() {
 <li><strong>Maintenance Overhead</strong>: Provider API changes may require updates to native API usage</li>
 <li><strong>Testing Complexity</strong>: More complex testing required to cover provider-specific code paths</li>
 <li><strong>Feature Parity</strong>: Not all providers support equivalent native features</li>
-<li><strong>MapConductor Integration</strong>: Native changes may not integrate with MapConductor's state management</li>
+<li><strong>MapConductor Integration</strong>: Native changes may not integrate with MapConductor’s state management</li>
 </ol>
-<p>MapViewHolder is a powerful escape hatch for advanced use cases, but should be used judiciously to maintain the benefits of MapConductor's unified API approach.</p>
+<p>MapViewHolder is a powerful escape hatch for advanced use cases, but should be used judiciously to maintain the benefits of MapConductor’s unified API approach.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zoom-levels-1"><a class="header" href="#zoom-levels-1">Zoom Levels</a></h1>
 <p>MapConductor uses zoom levels to control the scale and detail of the map display. The zoom level system approximately follows Google Maps conventions but may vary slightly between map providers due to their underlying implementation differences.</p>
 <h2 id="understanding-zoom-levels"><a class="header" href="#understanding-zoom-levels">Understanding Zoom Levels</a></h2>
@@ -7531,7 +7538,7 @@ fun ContextAwareZoom() {
 <h3 id="zoom-level-selection"><a class="header" href="#zoom-level-selection">Zoom Level Selection</a></h3>
 <ol>
 <li><strong>Content-Driven</strong>: Choose zoom based on what you want to show</li>
-<li><strong>User Context</strong>: Consider user's current task and location</li>
+<li><strong>User Context</strong>: Consider user’s current task and location</li>
 <li><strong>Performance</strong>: Higher zoom levels require more detail rendering</li>
 <li><strong>Provider Limitations</strong>: Test across all target map providers</li>
 </ol>
@@ -7609,7 +7616,7 @@ fun ZoomLevelTester() {
     }
 }
 </code></pre>
-<p>Understanding and properly utilizing zoom levels is crucial for creating effective mapping applications that provide the right level of detail for your users' needs.</p>
+<p>Understanding and properly utilizing zoom levels is crucial for creating effective mapping applications that provide the right level of detail for your users’ needs.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="marker-icons"><a class="header" href="#marker-icons">Marker Icons</a></h1>
 <p>MapConductor provides several marker icon types to customize the appearance of markers on the map. All marker icons implement the <code>MarkerIcon</code> interface and can be used with any map provider.</p>
 <h2 id="markericon-interface"><a class="header" href="#markericon-interface">MarkerIcon Interface</a></h2>
@@ -7876,7 +7883,7 @@ markers.forEach { markerData -&gt;
 <ol>
 <li><strong>Meaningful Labels</strong>: Provide descriptive labels when using <code>DefaultIcon</code></li>
 <li><strong>Color Contrast</strong>: Ensure good contrast between fill and stroke colors</li>
-<li><strong>Alternative Indicators</strong>: Don't rely solely on color to convey information</li>
+<li><strong>Alternative Indicators</strong>: Don’t rely solely on color to convey information</li>
 </ol>
 <h2 id="common-use-cases-2"><a class="header" href="#common-use-cases-2">Common Use Cases</a></h2>
 <h3 id="status-indicators"><a class="header" href="#status-indicators">Status Indicators</a></h3>
@@ -8385,13 +8392,15 @@ val debugAnimation = object : MarkerAnimation {
 <h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>Add the icons module to your <code>build.gradle</code>:</p>
 <pre><code class="language-kotlin">dependencies {
-    implementation "com.mapconductor:mapconductor-icons:$version"
+    implementation "com.mapconductor:mapconductor-icons"
 
+    // Required: Bom module
+    implementation "com.mapconductor:mapconductor-bom:$version"
     // Required: Core module
-    implementation "com.mapconductor:mapconductor-core:$version"
+    implementation "com.mapconductor:core"
 
     // Choose your map provider
-    implementation "com.mapconductor:mapconductor-for-googlemaps:$version"
+    implementation "com.mapconductor:for-googlemaps"
 }
 </code></pre>
 <h2 id="available-icons"><a class="header" href="#available-icons">Available Icons</a></h2>
@@ -8652,7 +8661,7 @@ fun AnimatedIconExample() {
 </code></pre>
 <h2 id="icon-properties-and-behavior"><a class="header" href="#icon-properties-and-behavior">Icon Properties and Behavior</a></h2>
 <h3 id="anchor-points"><a class="header" href="#anchor-points">Anchor Points</a></h3>
-<p>Icons have specific anchor points that determine how they're positioned relative to the geographic coordinate:</p>
+<p>Icons have specific anchor points that determine how they’re positioned relative to the geographic coordinate:</p>
 <ul>
 <li><strong>CircleIcon</strong>: Anchored at left-center (0.0, 0.5)</li>
 <li><strong>FlagIcon</strong>: Anchored near the base of the pole (0.176, 0.91)</li>
@@ -8785,13 +8794,15 @@ fun DebugIconExample() {
 <h2 id="installation-1"><a class="header" href="#installation-1">Installation</a></h2>
 <p>Add the marker strategy module to your <code>build.gradle</code>:</p>
 <pre><code class="language-kotlin">dependencies {
-    implementation "com.mapconductor:mapconductor-marker-strategy:$version"
+    implementation "com.mapconductor:marker-strategy:$version"
 
     // Required: Core module
-    implementation "com.mapconductor:mapconductor-core:$version"
+    implementation "com.mapconductor:mapconductor-bom:$version"
+    // Required: Core module
+    implementation "com.mapconductor:core:$version"
 
     // Choose your map provider
-    implementation "com.mapconductor:mapconductor-for-googlemaps:$version"
+    implementation "com.mapconductor:for-googlemaps:$version"
 }
 </code></pre>
 <h2 id="core-strategies"><a class="header" href="#core-strategies">Core Strategies</a></h2>
@@ -9166,7 +9177,7 @@ fun StrategyPerformanceMonitoring() {
 </ol>
 <h2 id="common-pitfalls-1"><a class="header" href="#common-pitfalls-1">Common Pitfalls</a></h2>
 <ol>
-<li><strong>Over-Engineering</strong>: Don't use complex strategies for simple marker scenarios</li>
+<li><strong>Over-Engineering</strong>: Don’t use complex strategies for simple marker scenarios</li>
 <li><strong>Memory Leaks</strong>: Ensure proper cleanup of strategy resources</li>
 <li><strong>Provider Mismatch</strong>: Using wrong strategy for your map provider can hurt performance</li>
 <li><strong>Excessive Preloading</strong>: Large expand margins can cause memory pressure</li>
@@ -9241,13 +9252,15 @@ fun StrategyMarkers() {
 <h2 id="installation-2"><a class="header" href="#installation-2">Installation</a></h2>
 <p>Add the native strategy module to your <code>build.gradle</code>:</p>
 <pre><code class="language-kotlin">dependencies {
-    implementation "com.mapconductor:mapconductor-marker-native-strategy:$version"
+    implementation "com.mapconductor:marker-native-strategy:$version"
 
     // Required: Core module
-    implementation "com.mapconductor:mapconductor-core:$version"
+    implementation "com.mapconductor:mapconductor-bom:$version"
+    // Required: Core module
+    implementation "com.mapconductor:core:$version"
 
     // Choose your map provider
-    implementation "com.mapconductor:mapconductor-for-googlemaps:$version"
+    implementation "com.mapconductor:for-googlemaps:$version"
 }
 </code></pre>
 <h3 id="native-library-setup"><a class="header" href="#native-library-setup">Native Library Setup</a></h3>
@@ -10649,7 +10662,7 @@ MapView(
 <p>Called when the user taps on the map (not on any overlay).</p>
 <p><strong>Event Data</strong>: <code>GeoPoint</code> - the geographic coordinates of the tap</p>
 <h2 id="marker-events"><a class="header" href="#marker-events">Marker Events</a></h2>
-<p>All marker events receive a <code>MarkerState</code> object containing the marker's current state.</p>
+<p>All marker events receive a <code>MarkerState</code> object containing the marker’s current state.</p>
 <h3 id="click-events"><a class="header" href="#click-events">Click Events</a></h3>
 <pre><code class="language-kotlin">onMarkerClick: OnMarkerEventHandler? = null
 </code></pre>
@@ -10898,13 +10911,14 @@ typealias OnGroundImageEventHandler = (GroundImageEvent) -&gt; Unit
 <h3 id="gradle-dependencies"><a class="header" href="#gradle-dependencies">Gradle Dependencies</a></h3>
 <p>Add MapConductor to your <code>build.gradle.kts</code>:</p>
 <pre><code class="language-kotlin">dependencies {
-    implementation "com.mapconductor:mapconductor-core:$version"
+    implementation "com.mapconductor:mapconductor-bom:$version"
+    implementation "com.mapconductor:core"
 
     // Choose your map provider(s)
-    implementation "com.mapconductor:mapconductor-for-googlemaps:$version"
-    implementation "com.mapconductor:mapconductor-for-mapbox:$version"
-    implementation "com.mapconductor:mapconductor-for-here:$version"
-    implementation "com.mapconductor:mapconductor-for-arcgis:$version"
+    implementation "com.mapconductor:for-googlemaps"
+    implementation "com.mapconductor:for-mapbox"
+    implementation "com.mapconductor:for-here"
+    implementation "com.mapconductor:for-arcgis"
 }
 </code></pre>
 <h3 id="map-provider-setup"><a class="header" href="#map-provider-setup">Map Provider Setup</a></h3>
@@ -11300,6 +11314,7 @@ fun LoadingScreen(message: String) {
             window.setTimeout(window.print, 100);
         });
         </script>
+
 
     </div>
     </body>
